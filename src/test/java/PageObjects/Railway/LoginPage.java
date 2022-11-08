@@ -13,6 +13,8 @@ public class LoginPage extends BasePage {
     private WebElement getTxtPassword;
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement getBtnLogin;
+    @FindBy(xpath = "//div[@class='account']")
+    private WebElement getEmailBanner;
 
     public LoginPage(WebDriver webdriver) {
         this.driver = webdriver;
@@ -20,12 +22,15 @@ public class LoginPage extends BasePage {
     }
 
     public void navigateLoginPage() {
+
         clickNarBar("Login");
     }
     public void navigateRegisterPageLink() {
+
         clickLinkText("Registration Page");
     }
     public void navigateForgotPassLink() {
+
         clickLinkText("Forgot Password page");
     }
 
@@ -35,6 +40,11 @@ public class LoginPage extends BasePage {
     }
 
     public void clickBtnLogin() {
+
         getBtnLogin.click();
+    }
+    public String verifyEmail(){
+        String valueEmail = getEmailBanner.getText();
+        return valueEmail;
     }
 }

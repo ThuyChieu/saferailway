@@ -13,7 +13,8 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext result) {
-
+        System.out.println("========= INSTALLED CONFIGURATION DATA =========");
+        System.out.println(" ");
     }
 
     @Override
@@ -23,25 +24,23 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("Đây là test case bị fail: " + result.getName());
+        System.out.println("FAILED TESTCASE " + result.getName());
 
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        System.out.println("Đây là test case bị bỏ qua: " + result.getName());
+        System.out.println("SKIPPED TESTCASE " + result.getName());
 
     }
 
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("========= INSTALLED CONFIGURATION DATA =========");
-        System.out.println(" ");
+
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.println("Đây là test case chạy thành công: " + result.getName());
-
+        System.out.println("SUCCEED TESTCASE " + result.getName());
     }
 }
