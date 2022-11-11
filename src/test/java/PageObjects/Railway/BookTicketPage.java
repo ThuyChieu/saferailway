@@ -1,22 +1,26 @@
 package PageObjects.Railway;
+import Executables.DriverSetup;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class BookTicketPage extends BasePage {
-    @FindBy(xpath ="//select[@name='Date']")
+    @FindBy(name ="Date")
     private WebElement getDdlDepartDate;
-    @FindBy(xpath ="//select[@name='DepartStation']")
+    @FindBy(name ="DepartStation")
     private WebElement getDdlDepartStation;
-    @FindBy(xpath ="//select[@name='ArriveStation']")
+    @FindBy(name ="ArriveStation")
     private WebElement getDdlArriveStation;
-    @FindBy(xpath ="//select[@name='SeatType']")
+    @FindBy(name ="SeatType")
     private WebElement getDdlSeatType;
-    @FindBy(xpath ="//select[@name='TicketAmount']")
+    @FindBy(name ="TicketAmount")
     private WebElement getDdlTicketAmount;
     @FindBy(xpath ="//input[@value='Book ticket']")
     private WebElement getBtnBookTicket;
+    @FindBy(xpath ="//h1[@align='center']")
+    private WebElement getMsg;
 
     public BookTicketPage(WebDriver webDriver){
         this.driver = webDriver;
@@ -25,17 +29,17 @@ public class BookTicketPage extends BasePage {
     public void navigateBookTicketPage(){
         clickNarBar("Book ticket");
     }
-    public void chooseDdl(){
-        chooseDdlOption(getDdlDepartDate,"11/12/2022");
+    public void chooseDdlOption(){
+        chooseDdlOption(getDdlDepartDate,"11/23/2022");
         chooseDdlOption(getDdlDepartStation,"Sài Gòn");
-        chooseDdlOption(getDdlArriveStation,"Huế");
+        chooseDdlOption(getDdlArriveStation,"Nha Trang");
         chooseDdlOption(getDdlSeatType,"Soft bed with air conditioner");
         chooseDdlOption(getDdlTicketAmount,"1");
     }
     public void verifyDdl(){
-        verifyDdlValues(getDdlDepartDate, "11/12/2022");
+        verifyDdlValues(getDdlDepartDate, "11/23/2022");
         verifyDdlValues(getDdlDepartStation, "Sài Gòn");
-        verifyDdlValues(getDdlArriveStation, "Huế");
+        verifyDdlValues(getDdlArriveStation, "Nha Trang");
         verifyDdlValues(getDdlSeatType, "Soft bed with air conditioner");
         verifyDdlValues(getDdlTicketAmount, "1");
     }
@@ -48,5 +52,9 @@ public class BookTicketPage extends BasePage {
         verifyDdlValues(getBookedTicketInfor("Seat Type"),"Soft bed with air conditioner");
         verifyDdlValues(getBookedTicketInfor("Depart Date"),"11/12/2022");
         verifyDdlValues(getBookedTicketInfor("Amount"),"1");
+    }
+    public String msgBookingSuccess(){
+        String mess = getMsg.getText();
+        return mess;
     }
 }

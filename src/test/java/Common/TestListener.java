@@ -1,4 +1,4 @@
-package Common.Listeners;
+package Common;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -8,29 +8,29 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext result) {
-
+        Log.info("TEST CASES DONE");
     }
 
     @Override
     public void onStart(ITestContext result) {
-        System.out.println("========= INSTALLED CONFIGURATION DATA =========");
+        Log.info("NEW TEST CASES STARTED");
         System.out.println(" ");
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
+        Log.info("FAILURE OF TEST CASES WITH PASSED PERCENTAGE"+ result.getName());
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("FAILED TESTCASE " + result.getName());
+        Log.error("FAILED TESTCASES " + result.getName());
 
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        System.out.println("SKIPPED TESTCASE " + result.getName());
+        Log.info("SKIPPED TESTCASES " + result.getName());
 
     }
 
@@ -41,6 +41,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.println("SUCCEED TESTCASE " + result.getName());
+
+        Log.info("SUCCEED TESTCASES " + result.getName());
     }
 }

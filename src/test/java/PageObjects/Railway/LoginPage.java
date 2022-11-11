@@ -15,6 +15,8 @@ public class LoginPage extends BasePage {
     private WebElement getBtnLogin;
     @FindBy(xpath = "//div[@class='account']")
     private WebElement getEmailBanner;
+    @FindBy(xpath = "//p[@class='message error LoginForm']")
+    private WebElement getErrorMsg;
 
     public LoginPage(WebDriver webdriver) {
         this.driver = webdriver;
@@ -46,5 +48,9 @@ public class LoginPage extends BasePage {
     public String verifyEmail(){
         String valueEmail = getEmailBanner.getText();
         return valueEmail;
+    }
+    public String errorMsg(){
+        String errorMsg = getErrorMsg.getText();
+        return errorMsg;
     }
 }

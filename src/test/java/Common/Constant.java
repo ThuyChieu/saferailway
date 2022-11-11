@@ -1,9 +1,6 @@
-package Common.Constant;
+package Common;
 
-import Common.Utilities.PropertiesFile;
 import Executables.DriverSetup;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 
 public class Constant extends DriverSetup {

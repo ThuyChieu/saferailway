@@ -10,7 +10,7 @@ import org.testng.annotations.AfterMethod;
 import java.time.Duration;
 
 public class DriverSetup {
-    public WebDriver driver;
+    public static WebDriver driver;
 
     public WebDriver openDriver(String type) {
         switch (type.trim().toLowerCase()) {
