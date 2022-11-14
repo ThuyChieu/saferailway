@@ -37,14 +37,4 @@ public class DriverSetup {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
-
-    @AfterMethod
-    public void closeDriver() {
-        try {
-            Thread.sleep(5000);
-            driver.close();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

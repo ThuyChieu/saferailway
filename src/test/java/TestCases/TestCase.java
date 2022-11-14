@@ -1,39 +1,42 @@
 package TestCases;
 
-import Common.Log;
-import Common.TestListener;
 import Common.PropertiesFile;
-import PageObjects.Railway.BasePage;
 import PageObjects.Railway.BookTicketPage;
 import PageObjects.Railway.LoginPage;
 import PageObjects.Railway.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.annotations.Listeners;
+import Common.Utilities;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import Common.Constant;
 
-@Listeners(TestListener.class)
-public class TestCase extends BasePage {
+public class TestCase extends BaseTest {
     private LoginPage login;
     private RegisterPage register;
     private BookTicketPage bookTicket;
 
+    private static final Logger Log = LogManager.getLogger(BaseTest.class);
+
     @Test()
     public void testCaseRegister() {
+        Utilities.getLog();
         register = new RegisterPage(driver);
         register.navigateRegisterPage();
         register.scrollToElement();
-        register.inputInformation(BasePage.generateRandomEmail(8), generateRandomStringWithSpecialChars(8), generateRandomString(8));
+        register.inputInformation(Utilities.generateRandomEmail(8), Utilities.generateRandomStringWithSpecialChars(8), Utilities.generateRandomString(8));
         register.clickBtnRegister();
     }
 
     @Test(description = "User can log into Railway with valid username and password")
     public void TC01() {
+        Utilities.getLog();
         login = new LoginPage(driver);
         Log.info("Navigate to QA Railway Website");
         login.navigateLoginPage();
         Log.info("Click on 'Login' tab");
         login.scrollToElement();
-        login.inputInformation(PropertiesFile.getPropValue("email"), PropertiesFile.getPropValue("password"));
+        login.inputInformation(Constant.email,Constant.password);
         Log.info("Enter valid Email and Password");
         login.clickBtnLogin();
         Log.info("Click on 'Login' button");
