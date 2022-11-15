@@ -1,6 +1,5 @@
 package PageObjects.Railway;
 
-import PageObjects.Railway.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,5 +51,16 @@ public class LoginPage extends BasePage {
     public String errorMsg(){
         String errorMsg = getErrorMsg.getText();
         return errorMsg;
+    }
+    public void loginMultipleTimesWithWrongPass(String email, String password){
+        for (int i = 0;i<4; i++){
+            getTxtEmail.sendKeys(email);
+            getTxtPassword.sendKeys(password);
+            getBtnLogin.click();
+            getTxtEmail.clear();
+        }
+    }
+    public void verifyAdditionPagesDisplay(){
+
     }
 }
