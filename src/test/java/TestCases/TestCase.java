@@ -148,11 +148,16 @@ public class TestCase extends BaseTest {
         changePass.navigateChangePasswordPage();
         Log.info("Enter valid value into all fields.");
         String newPass = Constant.autoGeneratePassword;
+<<<<<<< HEAD
         changePass.inputInfor(Constant.password, newPass, newPass);
+=======
+        changePass.inputInfor(Constant.password,newPass,newPass);
+>>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
         Log.info("Click on 'Change Password' button");
         changePass.clickBtnChangePass();
     }
 
+<<<<<<< HEAD
     @Test(description = "User can't create account with 'Confirm password' is not the same with 'Password'")
     public void TC10() {
         Utilities.getLog();
@@ -206,6 +211,8 @@ public class TestCase extends BaseTest {
     }
 
 
+=======
+>>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
 
     @Test(description = "User can book 1 ticket at a time")
     public void TC14() {

@@ -1,6 +1,9 @@
 package PageObjects.Railway;
 
+<<<<<<< HEAD
 import Common.PropertiesFile;
+=======
+>>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

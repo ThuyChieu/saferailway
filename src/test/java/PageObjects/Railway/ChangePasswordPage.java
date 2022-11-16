@@ -15,10 +15,13 @@ public class ChangePasswordPage extends BasePage {
     private WebElement getTxtConfirmPass;
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement getBtnChangePass;
+<<<<<<< HEAD
 
     @FindBy(xpath = "//p[@class='message error']")
     private WebElement getErrorMsg;
 
+=======
+>>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
     public ChangePasswordPage(WebDriver webdriver) {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
@@ -29,13 +32,20 @@ public class ChangePasswordPage extends BasePage {
     public void inputInfor(String currentPass, String newPass, String confirmPass){
         getTxtCurrentPass.sendKeys(currentPass);
         getTxtNewPass.sendKeys(newPass);
+<<<<<<< HEAD
+=======
+        PropertiesFile.setPropValue("password",newPass);
+>>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
         getTxtConfirmPass.sendKeys(confirmPass);
     }
     public void clickBtnChangePass(){
         getBtnChangePass.click();
     }
+<<<<<<< HEAD
     public String errorMsg(){
         String errorMsg = getErrorMsg.getText();
         return errorMsg;
     }
+=======
+>>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
 }
