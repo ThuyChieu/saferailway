@@ -42,9 +42,10 @@
             <version>1.2.12</version>
             <scope>test</scope>
         </dependency><!--        <dependency>-->
-<!--            <groupId>org.apache.logging.log4j</groupId>-->
-<!--            <artifactId>log4j-core</artifactId>-->
-<!--            <version>2.19.0</version>-->
-<!--        </dependency>-->
+        <!--            <groupId>org.apache.logging.log4j</groupId>-->
+        <!--            <artifactId>log4j-core</artifactId>-->
+        <!--            <version>2.19.0</version>-->
+        <!--        </dependency>-->
     </dependencies>
 </project>
+

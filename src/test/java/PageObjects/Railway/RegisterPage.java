@@ -1,5 +1,6 @@
 package PageObjects.Railway;
 
+import Common.PropertiesFile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,12 @@ public class RegisterPage extends BasePage {
     private WebElement getTxtPID;
     @FindBy(xpath = "//input[@value='Register']")
     private WebElement getBtnRegister;
+    @FindBy(xpath = "//p[@class='message error']")
+    private WebElement getErrorMsg;
+    @FindBy(xpath = "//label[@class='validation-error' and @for='password']")
+    private WebElement getPassErrorMsg;
+    @FindBy(xpath = "//label[@class='validation-error' and @for='pid']")
+    private WebElement getPIDErrorMsg;
     public RegisterPage(WebDriver webdriver) {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
@@ -29,9 +36,23 @@ public class RegisterPage extends BasePage {
         getTxtPassword.sendKeys(password);
         getTxtConfirmPassword.sendKeys(password);
         getTxtPID.sendKeys(PID);
+        PropertiesFile.setPropValue("email",email);
+        PropertiesFile.setPropValue("password",password);
     }
 
     public void clickBtnRegister() {
         getBtnRegister.click();
+    }
+    public String passErrorMsg(){
+        String passErrorMsg = getPassErrorMsg.getText();
+        return passErrorMsg;
+    }
+    public String errorMsg(){
+        String errorMsg = getErrorMsg.getText();
+        return errorMsg;
+    }
+    public String PIDErrorMsg(){
+        String PIDErrorMsg = getPIDErrorMsg.getText();
+        return PIDErrorMsg;
     }
 }

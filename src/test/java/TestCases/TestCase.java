@@ -148,10 +148,63 @@ public class TestCase extends BaseTest {
         changePass.navigateChangePasswordPage();
         Log.info("Enter valid value into all fields.");
         String newPass = Constant.autoGeneratePassword;
-        changePass.inputInfor(Constant.password,newPass,newPass);
+        changePass.inputInfor(Constant.password, newPass, newPass);
         Log.info("Click on 'Change Password' button");
         changePass.clickBtnChangePass();
     }
+
+    @Test(description = "User can't create account with 'Confirm password' is not the same with 'Password'")
+    public void TC10() {
+        Utilities.getLog();
+        changePass = new ChangePasswordPage(driver);
+        login = new LoginPage(driver);
+        Log.info("Navigate to QA Railway Website");
+        Log.info("Click on 'Login' tab");
+        login.navigateLoginPage();
+        login.scrollToElement();
+        Log.info("Enter valid Email and Password");
+        login.inputInformation(Constant.email, Constant.password);
+        Log.info("Click on 'Login' button");
+        login.clickBtnLogin();
+        Log.info("Click on 'Change password' tab");
+        changePass.scrollToElement();
+        changePass.navigateChangePasswordPage();
+        Log.info("Enter valid information into all fields except 'Confirm password' is not the same with 'Password'");
+        changePass.inputInfor(Constant.password,Constant.autoGeneratePassword, "123456789");
+        Log.info("Click on 'Change Password' button");
+        changePass.clickBtnChangePass();
+        changePass.scrollToElement();
+
+        String errorMsg = changePass.errorMsg();
+        Log.info("Password change failed. Please correct the errors and try again.");
+        Assert.assertEquals(errorMsg,"Password change failed. Please correct the errors and try again.");
+    }
+
+    @Test(description = "User can't create account while password and PID fields are empty")
+    public void TC11() {
+        Utilities.getLog();
+        Log.info("Navigate to QA Railway Website");
+        register = new RegisterPage(driver);
+        Log.info("Click on 'Register' tab");
+        register.navigateRegisterPage();
+        register.scrollToElement();
+        Log.info("Enter valid email address and leave other fields empty");
+        register.inputInformation(Constant.autoGenerateEmail, "", "");
+        Log.info("Click on 'Register' button");
+        register.clickBtnRegister();
+        register.scrollToElement();
+
+        String errorMsg = register.errorMsg();
+        String passErrorMsg = register.passErrorMsg();
+        String PIDErrorMsg = register.PIDErrorMsg();
+        Log.info("Message 'There're errors in the form. Please correct the errors and try again.' appears above the form.");
+        Assert.assertEquals(errorMsg,"There're errors in the form. Please correct the errors and try again.");
+        Log.info("Next to password fields, error message 'Invalid password length' displays");
+        Assert.assertEquals(passErrorMsg,"Invalid password length");
+        Log.info("Next to PID field, error message 'Invalid ID length' displays");
+        Assert.assertEquals(PIDErrorMsg,"Invalid ID length");
+    }
+
 
 
     @Test(description = "User can book 1 ticket at a time")

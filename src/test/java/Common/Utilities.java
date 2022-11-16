@@ -12,7 +12,7 @@ public class Utilities {
 
     public static String generateRandomStringWithSpecialChars(int length) {
         String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk"
-                + "lmnopqrstuvwxyz!@#$%&";
+                + "lmnopqrstuvwxyz@";
         Random rnd = new Random();
         StringBuilder sb = new StringBuilder(length);
         for (int i = 0; i < length; i++)
