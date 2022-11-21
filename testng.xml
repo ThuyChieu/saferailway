@@ -5,13 +5,19 @@
         <classes>
             <class name="TestCases.TestCase">
                 <methods>
-                    <include name="testCaseRegister"/>
                     <include name="TC01"/>
                     <include name="TC02"/>
                     <include name="TC03"/>
+                    <include name="TC04"/>
+                    <include name="TC05"/>
+                    <include name="TC06"/>
+                    <include name="TC07"/>
+                    <include name="TC09"/>
+                    <include name="TC10"/>
+                    <include name="TC11"/>
                     <include name="TC14"/>
-                    <include name="testCaseRegistrationPageLink"/>
-                    <include name="testCaseForgotPassPageLink"/>
+<!--                    <include name="testCaseRegistrationPageLink"/>-->
+<!--                    <include name="testCaseForgotPassPageLink"/>-->
                 </methods>
             </class>
         </classes>

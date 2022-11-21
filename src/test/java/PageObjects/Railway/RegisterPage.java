@@ -18,20 +18,21 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = "//input[@value='Register']")
     private WebElement getBtnRegister;
     @FindBy(xpath = "//p[@class='message error']")
-    private WebElement getErrorMsg;
+    private WebElement getLblError;
     @FindBy(xpath = "//label[@class='validation-error' and @for='password']")
-    private WebElement getPassErrorMsg;
+    private WebElement getLblPassError;
     @FindBy(xpath = "//label[@class='validation-error' and @for='pid']")
-    private WebElement getPIDErrorMsg;
+    private WebElement getLblPIDError;
     public RegisterPage(WebDriver webdriver) {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
     }
     public void navigateRegisterPage() {
-        clickNarBar("Register");
+        navigationBar("Register").click();
     }
 
     public void inputInformation(String email, String password, String PID) {
+        scrollToElement(getTxtEmail);
         getTxtEmail.sendKeys(email);
         getTxtPassword.sendKeys(password);
         getTxtConfirmPassword.sendKeys(password);
@@ -44,15 +45,15 @@ public class RegisterPage extends BasePage {
         getBtnRegister.click();
     }
     public String passErrorMsg(){
-        String passErrorMsg = getPassErrorMsg.getText();
+        String passErrorMsg = getLblPassError.getText();
         return passErrorMsg;
     }
     public String errorMsg(){
-        String errorMsg = getErrorMsg.getText();
+        String errorMsg = getLblError.getText();
         return errorMsg;
     }
     public String PIDErrorMsg(){
-        String PIDErrorMsg = getPIDErrorMsg.getText();
+        String PIDErrorMsg = getLblPIDError.getText();
         return PIDErrorMsg;
     }
 }

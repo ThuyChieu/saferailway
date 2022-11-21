@@ -7,13 +7,12 @@ import org.openqa.selenium.WebElement;
 
 public class BasePage extends Constant {
 
-    public void clickNarBar(String option) {
+    public WebElement navigationBar(String option) {
         By optionNarBar = By.xpath("//span[text()='" + option + "']");
-        driver.findElement(optionNarBar).click();
+        return driver.findElement(optionNarBar);
     }
 
-    public void scrollToElement() {
-        WebElement element = driver.findElement(By.id("footer"));
+    public void scrollToElement(WebElement element) {
         Actions actions = new Actions(driver);
         actions.scrollToElement(element);
         actions.perform();

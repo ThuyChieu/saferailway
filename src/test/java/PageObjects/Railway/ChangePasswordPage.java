@@ -1,6 +1,5 @@
 package PageObjects.Railway;
 
-import Common.PropertiesFile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,37 +14,30 @@ public class ChangePasswordPage extends BasePage {
     private WebElement getTxtConfirmPass;
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement getBtnChangePass;
-<<<<<<< HEAD
 
     @FindBy(xpath = "//p[@class='message error']")
-    private WebElement getErrorMsg;
+    private WebElement getErrorLbl;
 
-=======
->>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
     public ChangePasswordPage(WebDriver webdriver) {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
     }
     public void navigateChangePasswordPage() {
-        clickNarBar("Change password");
+        navigationBar("Change password").click();
     }
     public void inputInfor(String currentPass, String newPass, String confirmPass){
+        scrollToElement(getTxtCurrentPass);
         getTxtCurrentPass.sendKeys(currentPass);
         getTxtNewPass.sendKeys(newPass);
-<<<<<<< HEAD
-=======
-        PropertiesFile.setPropValue("password",newPass);
->>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
         getTxtConfirmPass.sendKeys(confirmPass);
     }
     public void clickBtnChangePass(){
         getBtnChangePass.click();
+        scrollToElement(getBtnChangePass);
     }
-<<<<<<< HEAD
+
     public String errorMsg(){
-        String errorMsg = getErrorMsg.getText();
+        String errorMsg = getErrorLbl.getText();
         return errorMsg;
     }
-=======
->>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
 }

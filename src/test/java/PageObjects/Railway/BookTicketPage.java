@@ -22,7 +22,7 @@ public class BookTicketPage extends BasePage {
     @FindBy(xpath = "//input[@value='Book ticket']")
     private WebElement getBtnBookTicket;
     @FindBy(xpath = "//h1[@align='center']")
-    private WebElement getMsg;
+    private WebElement getLblBookSuccess;
 
     public WebElement getBookedTicketInfor(String value) {
         By valueInTable = By.xpath("//td[count(//table//th[.='" + value + "']/preceding-sibling::th)+1]");
@@ -35,10 +35,11 @@ public class BookTicketPage extends BasePage {
     }
 
     public void navigateBookTicketPage() {
-        clickNarBar("Book ticket");
+        navigationBar("Book ticket").click();
     }
 
     public void chooseDdlOption(WebElement element, String value) {
+        scrollToElement(getDdlDepartDate);
         Select selectOption = new Select(element);
         selectOption.selectByVisibleText(value);
     }
@@ -77,7 +78,7 @@ public class BookTicketPage extends BasePage {
     }
 
     public String msgBookingSuccess() {
-        String mess = getMsg.getText();
+        String mess = getLblBookSuccess.getText();
         return mess;
     }
 }

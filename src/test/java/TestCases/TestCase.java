@@ -1,5 +1,6 @@
 package TestCases;
 
+import Common.PropertiesFile;
 import PageObjects.Railway.BookTicketPage;
 import PageObjects.Railway.ChangePasswordPage;
 import PageObjects.Railway.LoginPage;
@@ -26,15 +27,14 @@ public class TestCase extends BaseTest {
         Log.info("Navigate to QA Railway Website");
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
-        login.scrollToElement();
         Log.info("Enter valid Email and Password");
         login.inputInformation(Constant.email, Constant.password);
         Log.info("Click on 'Login' button");
         login.clickBtnLogin();
 
-        String email = login.verifyEmail();
+        String text = login.verifyWelcome();
         Log.info("Welcome + username is displayed");
-        Assert.assertEquals(email, "Welcome chieu1@gmail.com");
+        Assert.assertEquals(text, "Welcome to Safe Railway");
     }
 
     @Test(description = "User can't login with blank 'Username' textbox")
@@ -44,7 +44,6 @@ public class TestCase extends BaseTest {
         login = new LoginPage(driver);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
-        login.scrollToElement();
         Log.info("User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
         login.inputInformation("", Constant.password);
         Log.info("Click on 'Login' button");
@@ -62,7 +61,6 @@ public class TestCase extends BaseTest {
         login = new LoginPage(driver);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
-        login.scrollToElement();
         Log.info("Enter valid Email and invalid Password");
         login.inputInformation(Constant.email, "");
         Log.info("Click on 'Login' button");
@@ -93,7 +91,6 @@ public class TestCase extends BaseTest {
         login = new LoginPage(driver);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
-        login.scrollToElement();
         Log.info("Enter valid Email and invalid Password");
         login.loginMultipleTimesWithWrongPass(Constant.email, Constant.autoGeneratePassword);
 
@@ -110,11 +107,11 @@ public class TestCase extends BaseTest {
         login = new LoginPage(driver);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
-        login.scrollToElement();
-        Log.info("Enter valid Email and invalid Password");
-        login.inputInformation(Constant.email, Constant.password);
-        Log.info("Click on 'Login' button");
-        login.clickBtnLogin();
+        Log.info("Login with valid account");
+        login.login(Constant.email, Constant.password);
+        login.verifyAdditionPagesDisplay("My ticket");
+        login.verifyAdditionPagesDisplay("Change password");
+        login.verifyAdditionPagesDisplay("Log out");
     }
 
     @Test(description = "User can create new account")
@@ -124,7 +121,6 @@ public class TestCase extends BaseTest {
         register = new RegisterPage(driver);
         Log.info("Click on 'Register' tab");
         register.navigateRegisterPage();
-        register.scrollToElement();
         Log.info("Enter valid information into all fields");
         register.inputInformation(Constant.autoGenerateEmail, Constant.autoGeneratePassword, Constant.autoGeneratePID);
         Log.info("Click on 'Register' button");
@@ -139,25 +135,19 @@ public class TestCase extends BaseTest {
         Log.info("Navigate to QA Railway Website");
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
-        login.scrollToElement();
-        Log.info("Enter valid Email and Password");
-        login.inputInformation(Constant.email, Constant.password);
-        Log.info("Click on 'Login' button");
-        login.clickBtnLogin();
+        Log.info("Login with valid account");
+        login.login(Constant.email, Constant.password);
         Log.info("Click on 'Change password' tab");
         changePass.navigateChangePasswordPage();
         Log.info("Enter valid value into all fields.");
         String newPass = Constant.autoGeneratePassword;
-<<<<<<< HEAD
-        changePass.inputInfor(Constant.password, newPass, newPass);
-=======
         changePass.inputInfor(Constant.password,newPass,newPass);
->>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
+        PropertiesFile.setPropValue("password",newPass);
         Log.info("Click on 'Change Password' button");
         changePass.clickBtnChangePass();
     }
 
-<<<<<<< HEAD
+
     @Test(description = "User can't create account with 'Confirm password' is not the same with 'Password'")
     public void TC10() {
         Utilities.getLog();
@@ -166,19 +156,14 @@ public class TestCase extends BaseTest {
         Log.info("Navigate to QA Railway Website");
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
-        login.scrollToElement();
-        Log.info("Enter valid Email and Password");
-        login.inputInformation(Constant.email, Constant.password);
-        Log.info("Click on 'Login' button");
-        login.clickBtnLogin();
+        Log.info("Login with valid account");
+        login.login(Constant.email, Constant.password);
         Log.info("Click on 'Change password' tab");
-        changePass.scrollToElement();
         changePass.navigateChangePasswordPage();
         Log.info("Enter valid information into all fields except 'Confirm password' is not the same with 'Password'");
         changePass.inputInfor(Constant.password,Constant.autoGeneratePassword, "123456789");
         Log.info("Click on 'Change Password' button");
         changePass.clickBtnChangePass();
-        changePass.scrollToElement();
 
         String errorMsg = changePass.errorMsg();
         Log.info("Password change failed. Please correct the errors and try again.");
@@ -192,12 +177,10 @@ public class TestCase extends BaseTest {
         register = new RegisterPage(driver);
         Log.info("Click on 'Register' tab");
         register.navigateRegisterPage();
-        register.scrollToElement();
         Log.info("Enter valid email address and leave other fields empty");
         register.inputInformation(Constant.autoGenerateEmail, "", "");
         Log.info("Click on 'Register' button");
         register.clickBtnRegister();
-        register.scrollToElement();
 
         String errorMsg = register.errorMsg();
         String passErrorMsg = register.passErrorMsg();
@@ -210,10 +193,6 @@ public class TestCase extends BaseTest {
         Assert.assertEquals(PIDErrorMsg,"Invalid ID length");
     }
 
-
-=======
->>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
-
     @Test(description = "User can book 1 ticket at a time")
     public void TC14() {
         Utilities.getLog();
@@ -222,15 +201,13 @@ public class TestCase extends BaseTest {
         bookTicket = new BookTicketPage(driver);
         login.navigateLoginPage();
         Log.info("Click on 'Login' tab");
-        login.scrollToElement();
         login.inputInformation(Constant.email, Constant.password);
         Log.info("Enter valid Email and Password");
         login.clickBtnLogin();
         Log.info("Click on 'Login' button");
         bookTicket.navigateBookTicketPage();
         Log.info("Click on 'Book ticket' tab");
-        bookTicket.scrollToElement();
-        bookTicket.chooseDdlOption();
+//        bookTicket.chooseDdlOption();
         Log.info("Select a 'Depart date' from the list");
         Log.info("Select 'Sài Gòn' for 'Depart from' and 'Nha Trang' for 'Arrive at'.");
         Log.info("Select 'Soft bed with air conditioner' for 'Seat type'");
@@ -238,7 +215,6 @@ public class TestCase extends BaseTest {
         bookTicket.verifyDdl();
         bookTicket.clickBtnBookTicket();
         Log.info("Click on 'Book ticket' button");
-        bookTicket.scrollToElement();
         bookTicket.verifyBookedTicket();
         Log.info("Verify ticket information display correctly");
 
@@ -251,7 +227,6 @@ public class TestCase extends BaseTest {
     public void testCaseRegistrationPageLink() {
         login = new LoginPage(driver);
         login.navigateLoginPage();
-        login.scrollToElement();
         login.navigateRegisterPageLink();
     }
 
@@ -259,7 +234,6 @@ public class TestCase extends BaseTest {
     public void testCaseForgotPassPageLink() {
         login = new LoginPage(driver);
         login.navigateLoginPage();
-        login.scrollToElement();
         login.navigateForgotPassLink();
     }
 }

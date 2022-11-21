@@ -1,9 +1,6 @@
 package PageObjects.Railway;
 
-<<<<<<< HEAD
-import Common.PropertiesFile;
-=======
->>>>>>> 028d1567fa0e9cbfbe0d38dedd4accee64aeb81d
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,10 +13,12 @@ public class LoginPage extends BasePage {
     private WebElement getTxtPassword;
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement getBtnLogin;
-    @FindBy(xpath = "//div[@class='account']")
-    private WebElement getEmailBanner;
+    @FindBy(xpath = "//h1[@align='center']")
+    private WebElement getLblWelcome;
     @FindBy(xpath = "//p[@class='message error LoginForm']")
-    private WebElement getErrorMsg;
+    private WebElement getLblError;
+    @FindBy(id = "footer")
+    private WebElement getFooter;
 
     public LoginPage(WebDriver webdriver) {
         this.driver = webdriver;
@@ -27,44 +26,61 @@ public class LoginPage extends BasePage {
     }
 
     public void navigateLoginPage() {
-
-        clickNarBar("Login");
+        navigationBar("Login").click();
     }
-    public void navigateRegisterPageLink() {
 
+    public void navigateRegisterPageLink() {
         clickLinkText("Registration Page");
     }
-    public void navigateForgotPassLink() {
 
+    public void navigateForgotPassLink() {
         clickLinkText("Forgot Password page");
     }
 
     public void inputInformation(String email, String password) {
+        scrollToElement(getFooter);
         getTxtEmail.sendKeys(email);
         getTxtPassword.sendKeys(password);
     }
 
     public void clickBtnLogin() {
+        getBtnLogin.click();
+        scrollToElement(getFooter);
+    }
 
+    public void login(String email, String password) {
+        scrollToElement(getFooter);
+        getTxtEmail.sendKeys(email);
+        getTxtPassword.sendKeys(password);
         getBtnLogin.click();
     }
-    public String verifyEmail(){
-        String valueEmail = getEmailBanner.getText();
-        return valueEmail;
+
+    public String verifyWelcome() {
+        String text = getLblWelcome.getText();
+        return text;
     }
-    public String errorMsg(){
-        String errorMsg = getErrorMsg.getText();
+
+    public String errorMsg() {
+        String errorMsg = getLblError.getText();
         return errorMsg;
     }
-    public void loginMultipleTimesWithWrongPass(String email, String password){
-        for (int i = 0;i<4; i++){
+
+    public void loginMultipleTimesWithWrongPass(String email, String password) {
+        for (int i = 0; i < 4; i++) {
+            scrollToElement(getFooter);
             getTxtEmail.sendKeys(email);
             getTxtPassword.sendKeys(password);
             getBtnLogin.click();
             getTxtEmail.clear();
         }
     }
-    public void verifyAdditionPagesDisplay(){
 
+    public boolean verifyAdditionPagesDisplay(String tabName) {
+        try {
+            WebElement tab = navigationBar(tabName);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }
