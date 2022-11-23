@@ -1,6 +1,5 @@
 package PageObjects.Railway;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,8 +43,8 @@ public class LoginPage extends BasePage {
     }
 
     public void clickBtnLogin() {
-        getBtnLogin.click();
         scrollToElement(getFooter);
+        getBtnLogin.click();
     }
 
     public void login(String email, String password) {
@@ -55,7 +54,7 @@ public class LoginPage extends BasePage {
         getBtnLogin.click();
     }
 
-    public String verifyWelcome() {
+    public String getLblWelcome() {
         String text = getLblWelcome.getText();
         return text;
     }
@@ -75,7 +74,7 @@ public class LoginPage extends BasePage {
         }
     }
 
-    public boolean verifyAdditionPagesDisplay(String tabName) {
+    public boolean displayAdditionPages(String tabName) {
         try {
             WebElement tab = navigationBar(tabName);
         } catch (Exception e) {

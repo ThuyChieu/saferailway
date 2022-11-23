@@ -1,10 +1,7 @@
 package TestCases;
 
 import Common.PropertiesFile;
-import PageObjects.Railway.BookTicketPage;
-import PageObjects.Railway.ChangePasswordPage;
-import PageObjects.Railway.LoginPage;
-import PageObjects.Railway.RegisterPage;
+import PageObjects.Railway.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import Common.Utilities;
@@ -17,6 +14,9 @@ public class TestCase extends BaseTest {
     private RegisterPage register;
     private BookTicketPage bookTicket;
     private ChangePasswordPage changePass;
+    private MyTicketPage myTicket;
+
+    private TimetablePage timetable;
 
     private static final Logger Log = LogManager.getLogger(BaseTest.class);
 
@@ -32,7 +32,7 @@ public class TestCase extends BaseTest {
         Log.info("Click on 'Login' button");
         login.clickBtnLogin();
 
-        String text = login.verifyWelcome();
+        String text = login.getLblWelcome();
         Log.info("Welcome + username is displayed");
         Assert.assertEquals(text, "Welcome to Safe Railway");
     }
@@ -109,9 +109,9 @@ public class TestCase extends BaseTest {
         login.navigateLoginPage();
         Log.info("Login with valid account");
         login.login(Constant.email, Constant.password);
-        login.verifyAdditionPagesDisplay("My ticket");
-        login.verifyAdditionPagesDisplay("Change password");
-        login.verifyAdditionPagesDisplay("Log out");
+        login.displayAdditionPages("My ticket");
+        login.displayAdditionPages("Change password");
+        login.displayAdditionPages("Log out");
     }
 
     @Test(description = "User can create new account")
@@ -125,6 +125,22 @@ public class TestCase extends BaseTest {
         register.inputInformation(Constant.autoGenerateEmail, Constant.autoGeneratePassword, Constant.autoGeneratePID);
         Log.info("Click on 'Register' button");
         register.clickBtnRegister();
+    }
+
+    @Test(description = "User can't login with an account hasn't been registered")
+    public void TC08() {
+        Utilities.getLog();
+        login = new LoginPage(driver);
+        Log.info("Navigate to QA Railway Website");
+        Log.info("Click on 'Login' tab");
+        login.navigateLoginPage();
+        Log.info("Login with valid account");
+        login.login(Utilities.generateRandomEmail(10), Utilities.generateRandomStringWithSpecialChars(10));
+        Log.info("Click on 'Login' button");
+
+        String errorMsg = login.errorMsg();
+        Log.info("Message 'Invalid username or password. Please try again.' appears.");
+        Assert.assertEquals(errorMsg, "Invalid username or password. Please try again.");
     }
 
     @Test(description = "User can change password")
@@ -141,10 +157,10 @@ public class TestCase extends BaseTest {
         changePass.navigateChangePasswordPage();
         Log.info("Enter valid value into all fields.");
         String newPass = Constant.autoGeneratePassword;
-        changePass.inputInfor(Constant.password,newPass,newPass);
-        PropertiesFile.setPropValue("password",newPass);
+        changePass.inputInfor(Constant.password, newPass, newPass);
         Log.info("Click on 'Change Password' button");
         changePass.clickBtnChangePass();
+        PropertiesFile.setPropValue("password", newPass);
     }
 
 
@@ -153,21 +169,16 @@ public class TestCase extends BaseTest {
         Utilities.getLog();
         changePass = new ChangePasswordPage(driver);
         login = new LoginPage(driver);
+        register = new RegisterPage(driver);
         Log.info("Navigate to QA Railway Website");
-        Log.info("Click on 'Login' tab");
-        login.navigateLoginPage();
-        Log.info("Login with valid account");
-        login.login(Constant.email, Constant.password);
-        Log.info("Click on 'Change password' tab");
-        changePass.navigateChangePasswordPage();
+        Log.info("Click on 'Register' tab");
+        register.navigateRegisterPage();
         Log.info("Enter valid information into all fields except 'Confirm password' is not the same with 'Password'");
-        changePass.inputInfor(Constant.password,Constant.autoGeneratePassword, "123456789");
-        Log.info("Click on 'Change Password' button");
-        changePass.clickBtnChangePass();
+        register.register(Constant.email, Constant.password, Utilities.generateRandomStringWithSpecialChars(10), "123456789");
 
         String errorMsg = changePass.errorMsg();
-        Log.info("Password change failed. Please correct the errors and try again.");
-        Assert.assertEquals(errorMsg,"Password change failed. Please correct the errors and try again.");
+        Log.info("Message 'There're errors in the form. Please correct the errors and try again.' is displayed");
+        Assert.assertEquals(errorMsg, "There're errors in the form. Please correct the errors and try again.");
     }
 
     @Test(description = "User can't create account while password and PID fields are empty")
@@ -178,19 +189,17 @@ public class TestCase extends BaseTest {
         Log.info("Click on 'Register' tab");
         register.navigateRegisterPage();
         Log.info("Enter valid email address and leave other fields empty");
-        register.inputInformation(Constant.autoGenerateEmail, "", "");
-        Log.info("Click on 'Register' button");
-        register.clickBtnRegister();
+        register.register(Constant.email, "", Utilities.generateRandomStringWithSpecialChars(10), "");
 
         String errorMsg = register.errorMsg();
         String passErrorMsg = register.passErrorMsg();
         String PIDErrorMsg = register.PIDErrorMsg();
         Log.info("Message 'There're errors in the form. Please correct the errors and try again.' appears above the form.");
-        Assert.assertEquals(errorMsg,"There're errors in the form. Please correct the errors and try again.");
+        Assert.assertEquals(errorMsg, "There're errors in the form. Please correct the errors and try again.");
         Log.info("Next to password fields, error message 'Invalid password length' displays");
-        Assert.assertEquals(passErrorMsg,"Invalid password length");
+        Assert.assertEquals(passErrorMsg, "Invalid password length");
         Log.info("Next to PID field, error message 'Invalid ID length' displays");
-        Assert.assertEquals(PIDErrorMsg,"Invalid ID length");
+        Assert.assertEquals(PIDErrorMsg, "Invalid ID length");
     }
 
     @Test(description = "User can book 1 ticket at a time")
@@ -199,29 +208,71 @@ public class TestCase extends BaseTest {
         Log.info("Navigate to QA Railway Website");
         login = new LoginPage(driver);
         bookTicket = new BookTicketPage(driver);
-        login.navigateLoginPage();
         Log.info("Click on 'Login' tab");
-        login.inputInformation(Constant.email, Constant.password);
-        Log.info("Enter valid Email and Password");
-        login.clickBtnLogin();
-        Log.info("Click on 'Login' button");
-        bookTicket.navigateBookTicketPage();
+        login.navigateLoginPage();
+        Log.info("Login with valid Email and Password");
+        login.login(Constant.email, PropertiesFile.getPropValue("password"));
         Log.info("Click on 'Book ticket' tab");
-//        bookTicket.chooseDdlOption();
+        bookTicket.navigateBookTicketPage();
         Log.info("Select a 'Depart date' from the list");
         Log.info("Select 'Sài Gòn' for 'Depart from' and 'Nha Trang' for 'Arrive at'.");
         Log.info("Select 'Soft bed with air conditioner' for 'Seat type'");
         Log.info("Select '1' for 'Ticket amount'");
-        bookTicket.verifyDdl();
+        bookTicket.chooseDdlOption("12/21/2022", "Sài Gòn", "Nha Trang", "Soft bed with air conditioner", "1");
+        bookTicket.verifyDdl("12/21/2022", "Sài Gòn", "Nha Trang", "Soft bed with air conditioner", "1");
         bookTicket.clickBtnBookTicket();
         Log.info("Click on 'Book ticket' button");
-        bookTicket.verifyBookedTicket();
+        bookTicket.verifyBookedTicketValue("12/21/2022", "Sài Gòn", "Nha Trang", "Soft bed with air conditioner", "1");
         Log.info("Verify ticket information display correctly");
 
         String message = bookTicket.msgBookingSuccess();
         Assert.assertEquals(message, "Ticket Booked Successfully!");
         Log.info("Message 'Ticket booked successfully!' displays.");
     }
+
+    @Test(description = "User can open 'Book ticket' page by clicking on 'Book ticket' link in 'Train timetable' page")
+    public void TC15() {
+        Utilities.getLog();
+        Log.info("Navigate to QA Railway Website");
+        login = new LoginPage(driver);
+        timetable = new TimetablePage(driver);
+        login.navigateLoginPage();
+        Log.info("Login with valid Email and Password");
+        login.login(Constant.email, PropertiesFile.getPropValue("password"));
+        Log.info("Click on 'Timetable' button");
+        timetable.navigateTimetablePage();
+        Log.info("Click on 'book ticket' link of the route from 'Huế' to 'Sài Gòn'");
+        timetable.clickBtnBookTicket("Huế", "Sài Gòn");
+        Log.info("'Book ticket' page is loaded with correct  'Depart from' and 'Arrive at' values.");
+        timetable.verifyDepartArrive("Huế", "Sài Gòn");
+    }
+
+    @Test(description = "User can cancel a ticket")
+    public void TC16() {
+        Utilities.getLog();
+        Log.info("Navigate to QA Railway Website");
+        login = new LoginPage(driver);
+        bookTicket = new BookTicketPage(driver);
+        myTicket = new MyTicketPage(driver);
+        Log.info("Click on 'Login' tab");
+        login.navigateLoginPage();
+        Log.info("Login with valid Email and Password");
+        login.login(Constant.email, PropertiesFile.getPropValue("password"));
+        Log.info("Click on 'Book ticket' tab");
+        bookTicket.navigateBookTicketPage();
+        Log.info("Select a 'Depart date' from the list");
+        Log.info("Select 'Sài Gòn' for 'Depart from' and 'Nha Trang' for 'Arrive at'.");
+        Log.info("Select 'Soft bed with air conditioner' for 'Seat type'");
+        Log.info("Select '1' for 'Ticket amount'");
+        bookTicket.bookTicket("12/21/2022", "Sài Gòn", "Nha Trang", "Soft bed with air conditioner", "1");
+        myTicket.navigateMyTicket();
+        String cancelID = myTicket.getAtributeCanCelBtn("2");
+        myTicket.clickCancelBtn("2");
+        myTicket.clickOKAlert();
+        Boolean result = myTicket.getBtnByID(cancelID);
+        Assert.assertTrue(result, "Delete failed");
+    }
+
 
     @Test(description = "User can access to Registration Page link text")
     public void testCaseRegistrationPageLink() {

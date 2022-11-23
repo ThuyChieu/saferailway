@@ -12,12 +12,13 @@
                     <include name="TC05"/>
                     <include name="TC06"/>
                     <include name="TC07"/>
+                    <include name="TC08"/>
                     <include name="TC09"/>
                     <include name="TC10"/>
                     <include name="TC11"/>
                     <include name="TC14"/>
-<!--                    <include name="testCaseRegistrationPageLink"/>-->
-<!--                    <include name="testCaseForgotPassPageLink"/>-->
+                    <include name="TC15"/>
+                    <include name="TC16"/>
                 </methods>
             </class>
         </classes>

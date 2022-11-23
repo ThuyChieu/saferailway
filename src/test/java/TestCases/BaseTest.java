@@ -14,11 +14,14 @@ public class BaseTest extends DriverSetup {
         String url = "http://www.railwayb2.somee.com/Page/HomePage.cshtml";
         driver = openDriver(PropertiesFile.getPropValue("browser"));
         findURL(url);
+        maximizeWindow();
+        impllicitWait();
     }
+
     @AfterMethod(alwaysRun = true)
     public void closeDriver() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             driver.close();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
