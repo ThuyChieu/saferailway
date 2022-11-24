@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 public class BookTicketPage extends BasePage {
     @FindBy(name = "Date")
@@ -24,9 +23,12 @@ public class BookTicketPage extends BasePage {
     @FindBy(xpath = "//h1[@align='center']")
     private WebElement getLblBookSuccess;
 
-    public WebElement getBookedTicketInfor(String value) {
+    @FindBy(id = "footer")
+    private WebElement getFooter;
+
+    private WebElement getBookedTicketInfor(String value) {
         By valueInTable = By.xpath("//td[count(//table//th[.='" + value + "']/preceding-sibling::th)+1]");
-        return (WebElement) valueInTable;
+        return driver.findElement(valueInTable);
     }
 
     public BookTicketPage(WebDriver webDriver) {
@@ -39,42 +41,47 @@ public class BookTicketPage extends BasePage {
     }
 
     public void chooseDdlOption(WebElement element, String value) {
-        scrollToElement(getDdlDepartDate);
+        scrollToElement(getFooter);
         Select selectOption = new Select(element);
         selectOption.selectByVisibleText(value);
     }
 
-    public void verifyDdlValues(WebElement element, String value) {
-        Select dropDown = new Select(element);
-        Assert.assertEquals(value, dropDown.getFirstSelectedOption().getText());
+    public void chooseDdlOption(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount) {
+        chooseDdlOption(getDdlDepartDate, departDate);
+        chooseDdlOption(getDdlDepartStation, departStation);
+        chooseDdlOption(getDdlArriveStation, arriveStation);
+        chooseDdlOption(getDdlSeatType, seatType);
+        chooseDdlOption(getDdlTicketAmount, ticketAmount);
     }
 
-    public void chooseDdlOption() {
-        chooseDdlOption(getDdlDepartDate, "11/23/2022");
-        chooseDdlOption(getDdlDepartStation, "Sài Gòn");
-        chooseDdlOption(getDdlArriveStation, "Nha Trang");
-        chooseDdlOption(getDdlSeatType, "Soft bed with air conditioner");
-        chooseDdlOption(getDdlTicketAmount, "1");
-    }
-
-    public void verifyDdl() {
-        verifyDdlValues(getDdlDepartDate, "11/23/2022");
-        verifyDdlValues(getDdlDepartStation, "Sài Gòn");
-        verifyDdlValues(getDdlArriveStation, "Nha Trang");
-        verifyDdlValues(getDdlSeatType, "Soft bed with air conditioner");
-        verifyDdlValues(getDdlTicketAmount, "1");
+    public void verifyDdl(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount) {
+        verifyDdlValues(getDdlDepartDate, departDate);
+        verifyDdlValues(getDdlDepartStation, departStation);
+        verifyDdlValues(getDdlArriveStation, arriveStation);
+        verifyDdlValues(getDdlSeatType, seatType);
+        verifyDdlValues(getDdlTicketAmount, ticketAmount);
     }
 
     public void clickBtnBookTicket() {
         getBtnBookTicket.click();
     }
 
-    public void verifyBookedTicket() {
-        verifyDdlValues(getBookedTicketInfor("Depart Station"), "Sài Gòn");
-        verifyDdlValues(getBookedTicketInfor("Arrive Station"), "Huế");
-        verifyDdlValues(getBookedTicketInfor("Seat Type"), "Soft bed with air conditioner");
-        verifyDdlValues(getBookedTicketInfor("Depart Date"), "11/12/2022");
-        verifyDdlValues(getBookedTicketInfor("Amount"), "1");
+    public void bookTicket(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount) {
+        chooseDdlOption(getDdlDepartDate, departDate);
+        chooseDdlOption(getDdlDepartStation, departStation);
+        chooseDdlOption(getDdlArriveStation, arriveStation);
+        chooseDdlOption(getDdlSeatType, seatType);
+        chooseDdlOption(getDdlTicketAmount, ticketAmount);
+        getBtnBookTicket.click();
+    }
+
+    public void verifyBookedTicketValue(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount) {
+        scrollToElement(getFooter);
+        verifyBookedTicket(getBookedTicketInfor("Depart Date"), departDate);
+        verifyBookedTicket(getBookedTicketInfor("Depart Station"), departStation);
+        verifyBookedTicket(getBookedTicketInfor("Arrive Station"), arriveStation);
+        verifyBookedTicket(getBookedTicketInfor("Seat Type"), seatType);
+        verifyBookedTicket(getBookedTicketInfor("Amount"), ticketAmount);
     }
 
     public String msgBookingSuccess() {

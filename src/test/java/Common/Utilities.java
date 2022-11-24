@@ -3,6 +3,7 @@ package Common;
 import net.bytebuddy.utility.RandomString;
 
 import java.util.Random;
+
 import org.apache.log4j.BasicConfigurator;
 
 public class Utilities {
@@ -24,6 +25,7 @@ public class Utilities {
         String domain = "@m.o";
         return generateRandomString(length - domain.length()) + domain;
     }
+
     public static void getLog() {
         BasicConfigurator.configure();
     }
