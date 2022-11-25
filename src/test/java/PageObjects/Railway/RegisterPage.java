@@ -28,46 +28,4 @@ public class RegisterPage extends BasePage {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
     }
-
-    public void navigateRegisterPage() {
-        navigationBar("Register").click();
-    }
-
-    public void inputInformation(String email, String password, String PID) {
-        scrollToElement(getTxtEmail);
-        getTxtEmail.sendKeys(email);
-        getTxtPassword.sendKeys(password);
-        getTxtConfirmPassword.sendKeys(password);
-        getTxtPID.sendKeys(PID);
-        PropertiesFile.setPropValue("email", email);
-        PropertiesFile.setPropValue("password", password);
-    }
-
-    public void register(String email, String password, String confirmPass, String PID) {
-        scrollToElement(getTxtEmail);
-        getTxtEmail.sendKeys(email);
-        getTxtPassword.sendKeys(password);
-        getTxtConfirmPassword.sendKeys(confirmPass);
-        getTxtPID.sendKeys(PID);
-        getBtnRegister.click();
-    }
-
-    public void clickBtnRegister() {
-        getBtnRegister.click();
-    }
-
-    public String passErrorMsg() {
-        String passErrorMsg = getLblPassError.getText();
-        return passErrorMsg;
-    }
-
-    public String errorMsg() {
-        String errorMsg = getLblError.getText();
-        return errorMsg;
-    }
-
-    public String PIDErrorMsg() {
-        String PIDErrorMsg = getLblPIDError.getText();
-        return PIDErrorMsg;
-    }
 }

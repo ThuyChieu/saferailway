@@ -22,25 +22,4 @@ public class ChangePasswordPage extends BasePage {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
     }
-
-    public void navigateChangePasswordPage() {
-        navigationBar("Change password").click();
-    }
-
-    public void inputInfor(String currentPass, String newPass, String confirmPass) {
-        scrollToElement(getTxtCurrentPass);
-        getTxtCurrentPass.sendKeys(currentPass);
-        getTxtNewPass.sendKeys(newPass);
-        getTxtConfirmPass.sendKeys(confirmPass);
-    }
-
-    public void clickBtnChangePass() {
-        getBtnChangePass.click();
-        scrollToElement(getBtnChangePass);
-    }
-
-    public String errorMsg() {
-        String errorMsg = getErrorLbl.getText();
-        return errorMsg;
-    }
 }

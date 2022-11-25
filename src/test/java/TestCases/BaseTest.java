@@ -15,7 +15,7 @@ public class BaseTest extends DriverSetup {
         driver = openDriver(PropertiesFile.getPropValue("browser"));
         findURL(url);
         maximizeWindow();
-        impllicitWait();
+        implicitWait();
     }
 
     @AfterMethod(alwaysRun = true)

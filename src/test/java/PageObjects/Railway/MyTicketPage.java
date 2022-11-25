@@ -16,36 +16,8 @@ public class MyTicketPage extends BasePage {
         return driver.findElement(btnCancel);
     }
 
-    public Boolean getBtnByID(String id) {
-        try {
-            By btnCancel = By.xpath("//input[@onclick='" + id + "']");
-            driver.findElement(btnCancel);
-            return false;
-        } catch (Exception e) {
-            return true;
-        }
-    }
-
     public MyTicketPage(WebDriver webdriver) {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
-    }
-
-    public void navigateMyTicket() {
-        navigationBar("My ticket").click();
-    }
-
-    public void clickCancelBtn(String row) {
-        scrollToElement(getFooter);
-        getBtnByRow(row).click();
-    }
-
-    public void clickOKAlert() {
-        alertAccept();
-        scrollToElement(getFooter);
-    }
-
-    public String getAtributeCanCelBtn(String rowNumber) {
-        return getBtnByRow(rowNumber).getAttribute("onclick");
     }
 }

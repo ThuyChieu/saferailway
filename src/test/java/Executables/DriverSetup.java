@@ -40,7 +40,7 @@ public class DriverSetup {
         driver.manage().window().maximize();
     }
 
-    public void impllicitWait() {
+    public void implicitWait() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 }

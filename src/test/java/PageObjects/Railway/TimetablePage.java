@@ -25,20 +25,5 @@ public class TimetablePage extends BasePage {
         this.driver = webDriver;
         PageFactory.initElements(driver, this);
     }
-
-    public void navigateTimetablePage() {
-        navigationBar("Timetable").click();
-    }
-
-    public void clickBtnBookTicket(String departStation, String arriveStation) {
-        scrollToElement(getFooter);
-        btnBookTicket(departStation, arriveStation).click();
-    }
-
-    public void verifyDepartArrive(String departStation, String arriveStation) {
-        scrollToElement(getFooter);
-        verifyDdlValues(getDdlArriveStation, arriveStation);
-        verifyDdlValues(getDdlDepartStation, departStation);
-    }
 }
 
