@@ -17,15 +17,27 @@ public class RegisterPage extends BasePage {
     private WebElement getTxtPID;
     @FindBy(xpath = "//input[@value='Register']")
     private WebElement getBtnRegister;
-    @FindBy(xpath = "//p[@class='message error']")
-    private WebElement getLblError;
-    @FindBy(xpath = "//label[@class='validation-error' and @for='password']")
-    private WebElement getLblPassError;
-    @FindBy(xpath = "//label[@class='validation-error' and @for='pid']")
-    private WebElement getLblPIDError;
 
     public RegisterPage(WebDriver webdriver) {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
+    }
+
+    public void navigateRegisterPage() {
+        navigationBar("Register").click();
+    }
+
+    public void inputInformation(String email, String password, String PID) {
+        scrollToElement(getTxtEmail);
+        getTxtEmail.sendKeys(email);
+        getTxtPassword.sendKeys(password);
+        getTxtConfirmPassword.sendKeys(password);
+        getTxtPID.sendKeys(PID);
+        PropertiesFile.setPropValue("email", email);
+        PropertiesFile.setPropValue("password", password);
+    }
+
+    public void clickBtnRegister() {
+        getBtnRegister.click();
     }
 }

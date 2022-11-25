@@ -12,10 +12,7 @@ public class LoginPage extends BasePage {
     private WebElement getTxtPassword;
     @FindBy(xpath = "//input[@type='submit']")
     private WebElement getBtnLogin;
-    @FindBy(xpath = "//h1[@align='center']")
-    private WebElement getLblWelcome;
-    @FindBy(xpath = "//p[@class='message error LoginForm']")
-    private WebElement getLblError;
+
     @FindBy(id = "footer")
     private WebElement getFooter;
 
@@ -23,4 +20,16 @@ public class LoginPage extends BasePage {
         this.driver = webdriver;
         PageFactory.initElements(driver, this);
     }
+
+    public void navigateLoginPage() {
+        navigationBar("Login").click();
+    }
+
+    public void login(String email, String password) {
+        scrollToElement(getFooter);
+        getTxtEmail.sendKeys(email);
+        getTxtPassword.sendKeys(password);
+        getBtnLogin.click();
+    }
 }
+

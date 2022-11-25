@@ -14,4 +14,15 @@ public class BasePage extends Constant {
         By optionNarBar = By.xpath("//span[text()='" + option + "']");
         return driver.findElement(optionNarBar);
     }
+
+    protected void scrollToElement(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.scrollToElement(element);
+        actions.perform();
+    }
+    protected void verifyDdlValues(WebElement element, String element2) {
+        Select dropDown = new Select(element);
+        Assert.assertEquals(dropDown.getFirstSelectedOption().getText(),element2);
+    }
+
 }

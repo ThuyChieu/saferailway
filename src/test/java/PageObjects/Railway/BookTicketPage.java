@@ -20,6 +20,7 @@ public class BookTicketPage extends BasePage {
     private WebElement getDdlTicketAmount;
     @FindBy(xpath = "//input[@value='Book ticket']")
     private WebElement getBtnBookTicket;
+
     @FindBy(xpath = "//h1[@align='center']")
     private WebElement getLblBookSuccess;
 
@@ -30,4 +31,24 @@ public class BookTicketPage extends BasePage {
         this.driver = webDriver;
         PageFactory.initElements(driver, this);
     }
+
+    public void navigateBookTicketPage() {
+        navigationBar("Book ticket").click();
+    }
+
+    public void chooseDdlOption(WebElement element, String value) {
+        scrollToElement(getFooter);
+        Select selectOption = new Select(element);
+        selectOption.selectByVisibleText(value);
+    }
+
+    public void bookTicket(String departDate, String departStation, String arriveStation, String seatType, String ticketAmount) {
+        chooseDdlOption(getDdlDepartDate, departDate);
+        chooseDdlOption(getDdlDepartStation, departStation);
+        chooseDdlOption(getDdlArriveStation, arriveStation);
+        chooseDdlOption(getDdlSeatType, seatType);
+        chooseDdlOption(getDdlTicketAmount, ticketAmount);
+        getBtnBookTicket.click();
+    }
 }
+
