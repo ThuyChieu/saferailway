@@ -1,10 +1,13 @@
 package Executables;
 
+import Utilities.TestReporter;
+import com.aventstack.extentreports.ExtentTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import Utilities.Utility;
 
 import java.time.Duration;
 
@@ -12,7 +15,8 @@ import java.time.Duration;
 public class DriverSetup {
     public static WebDriver driver;
 
-    public WebDriver openDriver(String type) {
+    public WebDriver initializeDriver(String type) {
+        Utility.log4j.info("createInstance method - Starts");
         switch (type.trim().toLowerCase()) {
             case "edge":
                 WebDriverManager.edgedriver().setup();
@@ -27,8 +31,8 @@ public class DriverSetup {
                 driver = new FirefoxDriver();
                 break;
         }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        maximizeWindow();
+        impllicitWait();
         return driver;
     }
 

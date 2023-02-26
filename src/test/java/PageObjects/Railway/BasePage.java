@@ -1,6 +1,6 @@
 package PageObjects.Railway;
 
-import Common.Constant;
+import Common.GlobalVariables;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.By;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-public class BasePage extends Constant {
+public class BasePage extends GlobalVariables {
 
     protected WebElement navigationBar(String option) {
         By optionNarBar = By.xpath("//span[text()='" + option + "']");
