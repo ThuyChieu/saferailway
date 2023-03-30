@@ -1,7 +1,5 @@
 package Executables;
 
-import Utilities.TestReporter;
-import com.aventstack.extentreports.ExtentTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,39 +11,41 @@ import java.time.Duration;
 
 
 public class DriverSetup {
-    public static WebDriver driver;
+    public static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
-    public WebDriver initializeDriver(String type) {
+    public static void createDriver(String type) {
         Utility.log4j.info("createInstance method - Starts");
         switch (type.trim().toLowerCase()) {
             case "edge":
                 WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
+                drivers.set(new EdgeDriver());
                 break;
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                drivers.set(new ChromeDriver());
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
+                drivers.set(new FirefoxDriver());
                 break;
         }
-        maximizeWindow();
-        impllicitWait();
-        return driver;
+//        maximizeWindow();
+//        implicitWait();
     }
 
-    public void findURL(String url) {
-        driver.get(url);
+    public static void get(String url) {
+            drivers.get().get(url);
+    }
+    public static void quitDriver() {
+            drivers.get().quit();
     }
 
-    public void maximizeWindow() {
-        driver.manage().window().maximize();
+    public static void maximizeWindow() {
+        drivers.get().manage().window().maximize();
     }
 
-    public void impllicitWait() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    public static void implicitWait() {
+        drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 }
 
