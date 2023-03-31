@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
+import static Common.GlobalVariables.PROJECT_PATH;
+
 
 public class PropertiesFile {
     private static Properties properties;
@@ -11,7 +13,7 @@ public class PropertiesFile {
     private static FileOutputStream fileOut;
 
     //Lấy đường dẫn đến project hiện tại
-    static String projectPath = System.getProperty("user.dir") + "/";
+    static String projectPath = PROJECT_PATH + "/";
     //Tạo đường dẫn đến file configs.properties mặc định
     private static String propertiesFilePathRoot = "src/test/java/configs.properties";
 
@@ -60,5 +62,4 @@ public class PropertiesFile {
             exp.printStackTrace();
         }
     }
-
 }

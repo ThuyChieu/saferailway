@@ -25,8 +25,8 @@ public class RegisterPage extends BasePage {
     private WebElement getLblPIDError;
 
     public RegisterPage(WebDriver webdriver) {
-        this.driver = webdriver;
-        PageFactory.initElements(driver, this);
+        this.drivers = webdriver;
+        PageFactory.initElements(drivers, this);
     }
 
     public void navigateRegisterPage() {

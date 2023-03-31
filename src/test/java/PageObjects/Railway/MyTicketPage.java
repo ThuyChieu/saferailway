@@ -13,13 +13,13 @@ public class MyTicketPage extends BasePage {
 
     private WebElement getBtnByRow(String rowNumber) {
         By btnCancel = By.xpath("//td[.='" + rowNumber + "']/..//input[@type='button' and @value='Cancel' or @value='Delete']");
-        return driver.findElement(btnCancel);
+        return drivers.findElement(btnCancel);
     }
 
     public Boolean getBtnByID(String id) {
         try {
             By btnCancel = By.xpath("//input[@onclick='" + id + "']");
-            driver.findElement(btnCancel);
+            drivers.findElement(btnCancel);
             return false;
         } catch (Exception e) {
             return true;
@@ -27,8 +27,8 @@ public class MyTicketPage extends BasePage {
     }
 
     public MyTicketPage(WebDriver webdriver) {
-        this.driver = webdriver;
-        PageFactory.initElements(driver, this);
+        this.drivers = webdriver;
+        PageFactory.initElements(drivers, this);
     }
 
     public void navigateMyTicket() {

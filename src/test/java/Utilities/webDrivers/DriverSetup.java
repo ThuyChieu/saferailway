@@ -1,51 +1,49 @@
-package Executables;
+package Utilities.webDrivers;
 
+import Utilities.TestReporter;
+import com.aventstack.extentreports.ExtentTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import Utilities.Utility;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
 
 
 public class DriverSetup {
-    public static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
-    public static void createDriver(String type) {
-        Utility.log4j.info("createInstance method - Starts");
-        switch (type.trim().toLowerCase()) {
-            case "edge":
-                WebDriverManager.edgedriver().setup();
-                drivers.set(new EdgeDriver());
-                break;
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                drivers.set(new ChromeDriver());
-                break;
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                drivers.set(new FirefoxDriver());
-                break;
+    public static WebDriver driver;
+
+    public static synchronized WebDriver initializeDriver(ExtentTest logTest, String browser) {
+        try {
+            Utility.log4j.info("createInstance method - Starts");
+            TestReporter.logInfo(logTest, "createInstance method - Starts");
+
+            ChromeOptions ChOptions = new ChromeOptions();
+            FirefoxOptions FFOptions = new FirefoxOptions();
+            switch (browser) {
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver(ChOptions);
+                    break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver(FFOptions);
+                    break;
+                default:
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+            }
+//            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            return driver;
+        } catch (Exception e) {
+            Utility.log4j.error("createInstance method - ERROR: ", e);
+            TestReporter.logException(logTest, "createInstance method - ERROR: ", e);
         }
-//        maximizeWindow();
-//        implicitWait();
-    }
-
-    public static void get(String url) {
-            drivers.get().get(url);
-    }
-    public static void quitDriver() {
-            drivers.get().quit();
-    }
-
-    public static void maximizeWindow() {
-        drivers.get().manage().window().maximize();
-    }
-
-    public static void implicitWait() {
-        drivers.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        return null;
     }
 }
-

@@ -19,8 +19,8 @@ public class ChangePasswordPage extends BasePage {
     private WebElement getErrorLbl;
 
     public ChangePasswordPage(WebDriver webdriver) {
-        this.driver = webdriver;
-        PageFactory.initElements(driver, this);
+        this.drivers = webdriver;
+        PageFactory.initElements(drivers, this);
     }
 
     public void navigateChangePasswordPage() {

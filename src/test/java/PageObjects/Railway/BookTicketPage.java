@@ -28,12 +28,12 @@ public class BookTicketPage extends BasePage {
 
     private WebElement getBookedTicketInfor(String value) {
         By valueInTable = By.xpath("//td[count(//table//th[.='" + value + "']/preceding-sibling::th)+1]");
-        return driver.findElement(valueInTable);
+        return drivers.findElement(valueInTable);
     }
 
     public BookTicketPage(WebDriver webDriver) {
-        this.driver = webDriver;
-        PageFactory.initElements(driver, this);
+        this.drivers = webDriver;
+        PageFactory.initElements(drivers, this);
     }
 
     public void navigateBookTicketPage() {

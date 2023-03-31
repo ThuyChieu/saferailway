@@ -37,8 +37,4 @@ public class DataFaker {
         LocalDateTime now = LocalDateTime.now();
         return df.format(now);
     }
-
-    public static void getLog() {
-        BasicConfigurator.configure();
-    }
 }

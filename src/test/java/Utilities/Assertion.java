@@ -16,7 +16,7 @@ public class Assertion {
                 TestReporter.logFail(logTest, "Actual: " + actual + "</br>Expected: " + expected + "</br>");
         } catch (Exception e) {
             log4j.error("verifyActualAndExpected method - ERROR: ", e);
-//            TestReporter.logException(logTest,"verifyActualAndExpected method - ERROR: ", e);
+            TestReporter.logException(logTest,"verifyActualAndExpected method - ERROR: ", e);
         }
     }
 }

@@ -9,7 +9,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import Common.GlobalVariables;
 
-public class TestCase extends BaseTest {
+public class TestCase extends {
     private LoginPage login;
     private RegisterPage register;
     private BookTicketPage bookTicket;
@@ -18,13 +18,15 @@ public class TestCase extends BaseTest {
 
     private TimetablePage timetable;
 
-    private static final Logger Log = LogManager.getLogger(BaseTest.class);
+//    private static final Logger Log = LogManager.getLogger(BaseTest.class);
 
     @Test(description = "User can log into Railway with valid username and password")
     public void TC01() {
-        DataFaker.getLog();
-        login = new LoginPage(driver);
+
         Log.info("Navigate to QA Railway Website");
+
+        logStep =
+
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
         Log.info("Enter valid Email and Password");
@@ -41,7 +43,7 @@ public class TestCase extends BaseTest {
     public void TC02() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        login = new LoginPage(driver);
+        login = new LoginPage(drivers);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
         Log.info("User doesn't type any words into 'Username' textbox but enter valid information into 'Password' textbox ");
@@ -58,7 +60,7 @@ public class TestCase extends BaseTest {
     public void TC03() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        login = new LoginPage(driver);
+        login = new LoginPage(drivers);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
         Log.info("Enter valid Email and invalid Password");
@@ -76,10 +78,10 @@ public class TestCase extends BaseTest {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
         Log.info("Click on 'Book ticket' tab");
-        bookTicket = new BookTicketPage(driver);
+        bookTicket = new BookTicketPage(drivers);
         bookTicket.navigateBookTicketPage();
 
-        String URL = driver.getCurrentUrl();
+        String URL = drivers.getCurrentUrl();
         Log.info("Login page displays instead of Book ticket page");
         Assert.assertEquals(URL, GlobalVariables.loginURL);
     }
@@ -88,7 +90,7 @@ public class TestCase extends BaseTest {
     public void TC05() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        login = new LoginPage(driver);
+        login = new LoginPage(drivers);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
         Log.info("Enter valid Email and invalid Password");
@@ -104,7 +106,7 @@ public class TestCase extends BaseTest {
     public void TC06() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        login = new LoginPage(driver);
+        login = new LoginPage(drivers);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
         Log.info("Login with valid account");
@@ -118,7 +120,7 @@ public class TestCase extends BaseTest {
     public void TC07() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        register = new RegisterPage(driver);
+        register = new RegisterPage(drivers);
         Log.info("Click on 'Register' tab");
         register.navigateRegisterPage();
         Log.info("Enter valid information into all fields");
@@ -130,7 +132,7 @@ public class TestCase extends BaseTest {
     @Test(description = "User can't login with an account hasn't been registered")
     public void TC08() {
         DataFaker.getLog();
-        login = new LoginPage(driver);
+        login = new LoginPage(drivers);
         Log.info("Navigate to QA Railway Website");
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
@@ -146,8 +148,8 @@ public class TestCase extends BaseTest {
     @Test(description = "User can change password")
     public void TC09() {
         DataFaker.getLog();
-        changePass = new ChangePasswordPage(driver);
-        login = new LoginPage(driver);
+        changePass = new ChangePasswordPage(drivers);
+        login = new LoginPage(drivers);
         Log.info("Navigate to QA Railway Website");
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
@@ -167,9 +169,9 @@ public class TestCase extends BaseTest {
     @Test(description = "User can't create account with 'Confirm password' is not the same with 'Password'")
     public void TC10() {
         DataFaker.getLog();
-        changePass = new ChangePasswordPage(driver);
-        login = new LoginPage(driver);
-        register = new RegisterPage(driver);
+        changePass = new ChangePasswordPage(drivers);
+        login = new LoginPage(drivers);
+        register = new RegisterPage(drivers);
         Log.info("Navigate to QA Railway Website");
         Log.info("Click on 'Register' tab");
         register.navigateRegisterPage();
@@ -185,7 +187,7 @@ public class TestCase extends BaseTest {
     public void TC11() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        register = new RegisterPage(driver);
+        register = new RegisterPage(drivers);
         Log.info("Click on 'Register' tab");
         register.navigateRegisterPage();
         Log.info("Enter valid email address and leave other fields empty");
@@ -206,8 +208,8 @@ public class TestCase extends BaseTest {
     public void TC14() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        login = new LoginPage(driver);
-        bookTicket = new BookTicketPage(driver);
+        login = new LoginPage(drivers);
+        bookTicket = new BookTicketPage(drivers);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
         Log.info("Login with valid Email and Password");
@@ -234,8 +236,8 @@ public class TestCase extends BaseTest {
     public void TC15() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        login = new LoginPage(driver);
-        timetable = new TimetablePage(driver);
+        login = new LoginPage(drivers);
+        timetable = new TimetablePage(drivers);
         login.navigateLoginPage();
         Log.info("Login with valid Email and Password");
         login.login(GlobalVariables.email, PropertiesFile.getPropValue("password"));
@@ -251,9 +253,9 @@ public class TestCase extends BaseTest {
     public void TC16() {
         DataFaker.getLog();
         Log.info("Navigate to QA Railway Website");
-        login = new LoginPage(driver);
-        bookTicket = new BookTicketPage(driver);
-        myTicket = new MyTicketPage(driver);
+        login = new LoginPage(drivers);
+        bookTicket = new BookTicketPage(drivers);
+        myTicket = new MyTicketPage(drivers);
         Log.info("Click on 'Login' tab");
         login.navigateLoginPage();
         Log.info("Login with valid Email and Password");
@@ -276,14 +278,14 @@ public class TestCase extends BaseTest {
 
     @Test(description = "User can access to Registration Page link text")
     public void testCaseRegistrationPageLink() {
-        login = new LoginPage(driver);
+        login = new LoginPage(drivers);
         login.navigateLoginPage();
         login.navigateRegisterPageLink();
     }
 
     @Test(description = "User can access to Forgot Password Page link text")
     public void testCaseForgotPassPageLink() {
-        login = new LoginPage(driver);
+        login = new LoginPage(drivers);
         login.navigateLoginPage();
         login.navigateForgotPassLink();
     }

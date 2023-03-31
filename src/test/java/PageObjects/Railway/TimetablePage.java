@@ -18,12 +18,12 @@ public class TimetablePage extends BasePage {
 
     private WebElement btnBookTicket(String departStation, String arriveStation) {
         By btnBookTicket = By.xpath("//td[text()='" + departStation + "']/following-sibling::td[text()='" + arriveStation + "']/..//a[contains(@href, 'Book')]");
-        return driver.findElement(btnBookTicket);
+        return drivers.findElement(btnBookTicket);
     }
 
     public TimetablePage(WebDriver webDriver) {
-        this.driver = webDriver;
-        PageFactory.initElements(driver, this);
+        this.drivers = webDriver;
+        PageFactory.initElements(drivers, this);
     }
 
     public void navigateTimetablePage() {

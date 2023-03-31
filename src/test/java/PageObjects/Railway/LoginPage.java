@@ -19,11 +19,6 @@ public class LoginPage extends BasePage {
     @FindBy(id = "footer")
     private WebElement getFooter;
 
-    public LoginPage(WebDriver webdriver) {
-        this.driver = webdriver;
-        PageFactory.initElements(driver, this);
-    }
-
     public void navigateLoginPage() {
         navigationBar("Login").click();
     }
