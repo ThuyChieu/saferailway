@@ -11,7 +11,7 @@ public class BaseTest extends DriverSetup {
     @BeforeMethod(alwaysRun = true)
     public void run() {
         PropertiesFile.setPropertiesFile();
-        String url = "http://www.railwayb2.somee.com/Page/HomePage.cshtml";
+        String url = "http://www.raillog.somee.com/Page/HomePage.cshtml";
         driver = openDriver(PropertiesFile.getPropValue("browser"));
         findURL(url);
         maximizeWindow();
