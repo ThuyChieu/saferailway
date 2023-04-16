@@ -1,0 +1,11 @@
+{
+  "TC_RES_11_Unable_create_account_with_empty_PID_password": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Unable create account with empty PID and Password",
+      "ErrorMessage": "There're errors in the form. Please correct the errors and try again.",
+      "PassErrMessage":"Invalid password length",
+      "PIDErrMessage": "Invalid ID length"
+    }
+  ]
+}

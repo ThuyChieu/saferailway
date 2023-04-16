@@ -1,5 +1,6 @@
 package PageObjects.Railway;
 
+import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,13 +14,13 @@ public class MyTicketPage extends BasePage {
 
     private WebElement getBtnByRow(String rowNumber) {
         By btnCancel = By.xpath("//td[.='" + rowNumber + "']/..//input[@type='button' and @value='Cancel' or @value='Delete']");
-        return drivers.findElement(btnCancel);
+        return Utility.getDriver().findElement(btnCancel);
     }
 
     public Boolean getBtnByID(String id) {
         try {
             By btnCancel = By.xpath("//input[@onclick='" + id + "']");
-            drivers.findElement(btnCancel);
+            Utility.getDriver().findElement(btnCancel);
             return false;
         } catch (Exception e) {
             return true;
@@ -27,8 +28,7 @@ public class MyTicketPage extends BasePage {
     }
 
     public MyTicketPage(WebDriver webdriver) {
-        this.drivers = webdriver;
-        PageFactory.initElements(drivers, this);
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateMyTicket() {

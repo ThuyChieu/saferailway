@@ -13,23 +13,17 @@ public class DataFaker {
         return RandomString.make(length);
     }
 
-    public static String generateRandomStringWithSpecialChars(int length) {
-        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk"
-                + "lmnopqrstuvwxyz@";
-        Random rnd = new Random();
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++)
-            sb.append(chars.charAt(rnd.nextInt(chars.length())));
-        return sb.toString();
-    }
+    public static String generateRandomEmail() {
 
-    public static String generateRandomEmail(String email) {
-        if (email.contains("@")) {
-            String[] parts = email.split("@");
-            return parts[0] + "+" + generateTimeStampString("HHmmssSSS") + "@" + parts[1];
-        } else {
-            throw new IllegalArgumentException("The string email doesn't contain @");
-        }
+        String[] domains = { "gmail.com", "outlook.com" };
+        Random random = new Random();
+
+        String username = "user" + random.nextInt(1000); // Tạo một tên người dùng ngẫu nhiên
+        String domain = domains[random.nextInt(domains.length)]; // Lấy ngẫu nhiên một tên miền từ danh sách
+
+        String email = username + "@" + domain; // Ghép nối tên người dùng và tên miền để tạo địa chỉ email
+
+        return email;
     }
 
     public static String generateTimeStampString(String pattern) {

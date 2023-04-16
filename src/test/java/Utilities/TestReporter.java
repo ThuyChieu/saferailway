@@ -73,8 +73,7 @@ public class TestReporter {
             FileUtils.copyFile(source, destination);
 
             //Add current url to report
-            if (getDriver().getCurrentUrl() != null)
-                logTest.info("Page url: " + getDriver().getCurrentUrl());
+            if (getDriver().getCurrentUrl() != null) logTest.info("Page url: " + getDriver().getCurrentUrl());
 
             //Add screenshot to report
             String screenShotLink = "<a href=\"" + screenShotName + "\"" + screenShotName + "</a>";

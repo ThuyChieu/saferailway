@@ -11,7 +11,6 @@ import static Utilities.Utility.log4j;
 
 
 public class CommonMethods {
-
     public static void registerAndGoToLoginPage(ExtentTest logStep, String emailAddress, String password, String PID) {
         try {
             log4j.info("registerAndGoToLoginPage - Starts");
@@ -21,6 +20,9 @@ public class CommonMethods {
             registerPage.navigateRegisterPage();
             registerPage.inputInformation(emailAddress, password, PID);
             registerPage.clickBtnRegister();
+
+            LoginPage loginPage = PageFactory.initElements(Utility.getDriver(), LoginPage.class);
+            loginPage.navigateLoginPage();
             log4j.info("registerAndGoToLoginPage method - Ends");
         } catch (Exception e) {
             log4j.error("registerAndGoToLoginPage method - ERROR: ", e);

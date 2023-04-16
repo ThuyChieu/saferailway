@@ -1,5 +1,6 @@
 package PageObjects.Railway;
 
+import Utilities.Utility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +19,11 @@ public class LoginPage extends BasePage {
     private WebElement getLblError;
     @FindBy(id = "footer")
     private WebElement getFooter;
+
+    public LoginPage() {
+        PageFactory.initElements(Utility.getDriver(), this);
+    }
+
 
     public void navigateLoginPage() {
         navigationBar("Login").click();

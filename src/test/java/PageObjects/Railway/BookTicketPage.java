@@ -1,5 +1,6 @@
 package PageObjects.Railway;
 
+import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,12 +29,11 @@ public class BookTicketPage extends BasePage {
 
     private WebElement getBookedTicketInfor(String value) {
         By valueInTable = By.xpath("//td[count(//table//th[.='" + value + "']/preceding-sibling::th)+1]");
-        return drivers.findElement(valueInTable);
+        return Utility.getDriver().findElement(valueInTable);
     }
 
     public BookTicketPage(WebDriver webDriver) {
-        this.drivers = webDriver;
-        PageFactory.initElements(drivers, this);
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateBookTicketPage() {

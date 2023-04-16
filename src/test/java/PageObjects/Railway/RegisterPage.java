@@ -1,6 +1,7 @@
 package PageObjects.Railway;
 
 import Utilities.PropertiesFile;
+import Utilities.Utility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,9 +25,8 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = "//label[@class='validation-error' and @for='pid']")
     private WebElement getLblPIDError;
 
-    public RegisterPage(WebDriver webdriver) {
-        this.drivers = webdriver;
-        PageFactory.initElements(drivers, this);
+    public RegisterPage() {
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateRegisterPage() {

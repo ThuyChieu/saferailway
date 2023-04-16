@@ -1,5 +1,6 @@
 package PageObjects.Railway;
 
+import Utilities.Utility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,8 +20,7 @@ public class ChangePasswordPage extends BasePage {
     private WebElement getErrorLbl;
 
     public ChangePasswordPage(WebDriver webdriver) {
-        this.drivers = webdriver;
-        PageFactory.initElements(drivers, this);
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateChangePasswordPage() {

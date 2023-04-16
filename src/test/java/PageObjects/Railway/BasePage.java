@@ -1,6 +1,7 @@
 package PageObjects.Railway;
 
 import Common.GlobalVariables;
+import Utilities.Utility;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -13,31 +14,23 @@ public class BasePage extends GlobalVariables {
 
     protected WebElement navigationBar(String option) {
         By optionNarBar = By.xpath("//span[text()='" + option + "']");
-        return drivers.get().findElement(optionNarBar);
+        return Utility.getDriver().findElement(optionNarBar);
     }
 
     protected void scrollToElement(WebElement element) {
-        Actions actions = new Actions(drivers.get());
+        Actions actions = new Actions(Utility.getDriver());
         actions.scrollToElement(element);
         actions.perform();
     }
 
     protected void alertAccept(){
-        Alert alert = drivers.get().switchTo().alert();
+        Alert alert = Utility.getDriver().switchTo().alert();
         alert.accept();
-    }
-
-    protected void switchToNewWindow() {
-        String winHandleBefore = drivers.get().getWindowHandle();
-        for (String winHandle : drivers.get().getWindowHandles()) {
-            drivers.get().switchTo().window(winHandle);
-        }
-        drivers.get().switchTo().window(winHandleBefore);
     }
 
     protected void clickLinkText(String name) {
         By link = By.linkText(name);
-        drivers.get().findElement(link).click();
+        Utility.getDriver().findElement(link).click();
     }
     protected void verifyDdlValues(WebElement element, String value) {
         Select dropDown = new Select(element);

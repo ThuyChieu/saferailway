@@ -13,11 +13,11 @@ public class PropertiesFile {
     private static FileOutputStream fileOut;
 
     //Lấy đường dẫn đến project hiện tại
-    static String projectPath = PROJECT_PATH + "/";
+    public static String projectPath = PROJECT_PATH + "/";
     //Tạo đường dẫn đến file configs.properties mặc định
     private static String propertiesFilePathRoot = "src/test/java/configs.properties";
 
-    public static void setPropertiesFile() {
+    static {
         properties = new Properties();
         try {
             //Khởi tạo giá trị cho đối tượng của class FileInputStream

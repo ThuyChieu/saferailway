@@ -1,5 +1,6 @@
 package PageObjects.Railway;
 
+import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,12 +19,12 @@ public class TimetablePage extends BasePage {
 
     private WebElement btnBookTicket(String departStation, String arriveStation) {
         By btnBookTicket = By.xpath("//td[text()='" + departStation + "']/following-sibling::td[text()='" + arriveStation + "']/..//a[contains(@href, 'Book')]");
-        return drivers.findElement(btnBookTicket);
+        return Utility.getDriver().findElement(btnBookTicket);
     }
 
     public TimetablePage(WebDriver webDriver) {
-        this.drivers = webDriver;
-        PageFactory.initElements(drivers, this);
+//        this.drivers = webDriver;
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateTimetablePage() {

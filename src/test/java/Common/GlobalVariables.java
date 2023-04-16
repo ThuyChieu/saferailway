@@ -3,19 +3,20 @@ package Common;
 import Utilities.DataFaker;
 import Utilities.PropertiesFile;
 
-public class GlobalVariables {
-    public static String BROWSER = PropertiesFile.getPropValue("browser");
-    public static String PROJECT_PATH = System.getProperty("user.dir");
-    public static String OUTPUT_PATH =  PROJECT_PATH + "/resources/output/";
+import java.time.Duration;
 
+public class GlobalVariables {
+    public static String PROJECT_PATH = System.getProperty("user.dir");
+    public static String OUTPUT_PATH = PROJECT_PATH + "/resources/output/";
+    public static String JSON_FILE_PATH = PROJECT_PATH + "/src/test/java/";
 
     //data test
-    public static final String email = PropertiesFile.getPropValue("email");
-    public static final String password = PropertiesFile.getPropValue("password");
-    public static final String autoGenerateEmail = DataFaker.generateRandomEmail("");
-    public static final String autoGeneratePassword = DataFaker.generateRandomStringWithSpecialChars(10);
-    public static final String autoGeneratePID = DataFaker.generateRandomString(10);
-    public static final String loginURL = "http://www.railwayb2.somee.com/Account/Login.cshtml?ReturnUrl=/Page/BookTicketPage.cshtml";
+    public static String BROWSER = PropertiesFile.getPropValue("browser");
+    public static String email = PropertiesFile.getPropValue("email");
+    public static String password = PropertiesFile.getPropValue("password");
+    public static String autoGenerateEmail = DataFaker.generateRandomEmail();
+    public static String autoGeneratePassword = DataFaker.generateRandomString(10);
+    public static String autoGeneratePID = DataFaker.generateRandomString(10);
 
     //report data
     public static int TOTAL_TESTCASES = 0;
@@ -23,6 +24,10 @@ public class GlobalVariables {
     public static int TOTAL_PASSED = 0;
     public static int TOTAL_FAILED = 0;
     public static int TOTAL_SKIPPED = 0;
+    public static final Duration WAIT_TIME_60 = Duration.ofSeconds(60);
+    //URL path
+    public static final String RAILWAY_URL = "http://www.raillog.somee.com";
+    public static final String RAILWAY_HOMEPAGE_URL = "http://www.raillog.somee.com/";
 
 
 }

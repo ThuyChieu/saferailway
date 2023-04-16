@@ -23,14 +23,15 @@ public class DriverSetup {
             Utility.log4j.info("createInstance method - Starts");
             TestReporter.logInfo(logTest, "createInstance method - Starts");
 
-            ChromeOptions ChOptions = new ChromeOptions();
-            FirefoxOptions FFOptions = new FirefoxOptions();
             switch (browser) {
                 case "chrome":
+                    ChromeOptions ChOptions = new ChromeOptions();
+                    ChOptions.addArguments("--remote-allow-origins=*");
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(ChOptions);
                     break;
                 case "firefox":
+                    FirefoxOptions FFOptions = new FirefoxOptions();
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver(FFOptions);
                     break;
