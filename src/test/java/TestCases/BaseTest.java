@@ -32,13 +32,13 @@ public class BaseTest extends Utility {
     @BeforeSuite
     public synchronized void beforeSuite(ITestContext context){
         log4jConfiguration();
-        DOMConfigurator.configure("D:\\Logigear\\saferailway\\src\\test\\java\\log4j2.properties");
+        DOMConfigurator.configure(PROJECT_PATH + "/resources/suites/log4j.xml");
 
         log4j.info("BeforeSuite - starts");
 
         try {
             ExtentSparkReporter  htmlReporter = new ExtentSparkReporter(reportFilePath);
-            htmlReporter.loadXMLConfig(new File("D:\\Logigear\\saferailway\\resources\\suites\\config.xml"));
+            htmlReporter.loadXMLConfig(new File(PROJECT_PATH + "/resources/suites/config.xml"));
             report = new ExtentReports();
             report.attachReporter(htmlReporter);
             logSuite = TestReporter.createTestForExtentReport(report, "Initial Setup");
