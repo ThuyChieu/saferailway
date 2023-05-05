@@ -105,6 +105,8 @@ public class BaseTest extends Utility {
 
     @DataProvider
     public Object[][] getDataForTest() {
+        log4j.info("GetDataForTest - Starts");
+
         String DataFilePath = JSON_FILE_PATH + this.getClass().getPackage().getName()
                 .replace(".", "/") + "/data.json";
         Object[][] data = getData(testCaseName, DataFilePath);
@@ -113,6 +115,8 @@ public class BaseTest extends Utility {
             logClass.fail("Data: "+ testCaseName + " doesn't exist in file data.json");
             TOTAL_FAILED++;
         }
+
+        log4j.info("GetDataForTest - Ends");
         return data;
     }
 
