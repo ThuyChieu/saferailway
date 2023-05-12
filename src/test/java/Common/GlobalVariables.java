@@ -26,7 +26,7 @@ public class GlobalVariables {
     public static int TOTAL_SKIPPED = 0;
     public static final Duration WAIT_TIME_60 = Duration.ofSeconds(60);
     //URL path
-    public static final String RAILWAY_URL = "http://www.raillog.somee.com";
+    public static final String RAILWAY_URL = "http://www.raillog.somee.com/Page/HomePage.cshtml";
     public static final String RAILWAY_HOMEPAGE_URL = "http://www.raillog.somee.com/";
 
 

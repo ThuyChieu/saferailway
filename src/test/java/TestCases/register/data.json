@@ -1,12 +1,26 @@
 {
   "TC10_Able_register_with_valid_data": [{}],
-  "TC_RES_11_Unable_create_account_with_empty_PID_password": [
+  "TC11_Unable_create_account_with_empty_PID": [
     {
       "Data": "Data1",
       "TestPurpose": "Unable create account with empty PID and Password",
       "ErrorMessage": "There're errors in the form. Please correct the errors and try again.",
-      "PassErrMessage": "Invalid password length",
       "PIDErrMessage": "Invalid ID length"
+    }
+  ],
+  "TC12_Unable_create_account_with_empty_Email": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Unable create account with empty email",
+      "ErrorMessage": "There're errors in the form. Please correct the errors and try again.",
+      "EmailErrMessage": "Invalid email length"
+    }
+  ],
+  "TC13_Unable_create_account_with_registered_account": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Unable to register new account by using a registered account before",
+      "RegisterErrMessage": "This email address is already in use."
     }
   ]
 }

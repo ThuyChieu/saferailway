@@ -17,13 +17,17 @@ public class LoginPage extends BasePage {
     private WebElement getLblWelcome;
     @FindBy(xpath = "//p[@class='message error LoginForm']")
     private WebElement getLblError;
+    @FindBy(xpath = "//label[@class='validation-error']")
+    private WebElement emailErrorMsg;
+    @FindBy(xpath = "//label[@class='validation-error']")
+    private WebElement passwordErrorMsg;
+
     @FindBy(id = "footer")
     private WebElement getFooter;
 
     public LoginPage() {
         PageFactory.initElements(Utility.getDriver(), this);
     }
-
 
     public void navigateLoginPage() {
         navigationBar("Login").click();
@@ -63,6 +67,14 @@ public class LoginPage extends BasePage {
     public String errorMsg() {
         String errorMsg = getLblError.getText();
         return errorMsg;
+    }
+    public String emailErrorMsg() {
+        String emailErrorMessage = emailErrorMsg.getText();
+        return emailErrorMessage;
+    }
+    public String passwordErrorMsg() {
+        String passErrorMsg = passwordErrorMsg.getText();
+        return passErrorMsg;
     }
 
     public void loginMultipleTimesWithWrongPass(String email, String password) {

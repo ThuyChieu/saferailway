@@ -20,6 +20,8 @@ public class RegisterPage extends BasePage {
     private WebElement getBtnRegister;
     @FindBy(xpath = "//p[@class='message error']")
     private WebElement getLblError;
+    @FindBy(xpath = "//label[@class='validation-error']")
+    private WebElement txt_EmailErrorMessage;
     @FindBy(xpath = "//label[@class='validation-error' and @for='password']")
     private WebElement getLblPassError;
     @FindBy(xpath = "//label[@class='validation-error' and @for='pid']")
@@ -69,5 +71,9 @@ public class RegisterPage extends BasePage {
     public String PIDErrorMsg() {
         String PIDErrorMsg = getLblPIDError.getText();
         return PIDErrorMsg;
+    }
+
+    public String getEmailErrorMessage () {
+        return txt_EmailErrorMessage.getText();
     }
 }

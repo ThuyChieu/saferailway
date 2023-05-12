@@ -1,25 +1,25 @@
 {
-  "TC_LOGIN_04_Unable_to_login_by_leaving_Email_filed_empty": [
+  "TC03_Unable_login_with_blank_Username": [
     {
       "Data": "Data1",
-      "TestPurpose": "Unable to login by leaving Email filed empty",
+      "TestPurpose": "Unable to login by leaving Username empty",
       "LoginErrMessage": "There was a problem with your login and/or errors exist in your form.",
-      "EmailErrMessage": " You must specify a username."
+      "EmailErrMessage": "You must specify a username."
     }
   ],
-  "TC_LOGIN_05_Unable_to_login_with_unregister_account": [
+  "TC05_Unable_login_with_blank_password": [
     {
       "Data": "Data1",
-      "TestPurpose": "Unable to login with unregistered account",
-      "LoginErrMessage": "Invalid username or password. Please try again."
+      "TestPurpose": "Unable to login by leaving Username empty",
+      "LoginErrMessage": "There was a problem with your login and/or errors exist in your form.",
+      "PassErrMessage": "You must specify a password."
     }
   ],
-  "TC_LOGIN_06_Unable_to_login_by_leaving_Password_filed_empty": [
+  "TC_06_Unable_login_with_wrong_password": [
     {
       "Data": "Data1",
       "TestPurpose": "Unable to login by leaving Password filed empty",
-      "LoginErrMessage": "There was a problem with your login and/or errors exist in your form.",
-      "PasswordErrMessage": "You must specify a password."
+      "LoginErrMessage": "Invalid username or password. Please try again."
     }
   ],
   "TC_LOGIN_07_unable_to_login_by_providing_wrong_password": [

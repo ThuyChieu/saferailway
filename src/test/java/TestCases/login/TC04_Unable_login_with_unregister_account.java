@@ -8,14 +8,16 @@ import Utilities.WebDriverUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Hashtable;
+
 import static Common.GlobalVariables.RAILWAY_URL;
 
 
 public class TC04_Unable_login_with_unregister_account extends BaseTest {
     private LoginPage loginPage;
 
-    @Test(description = "User can't login with an account hasn't been registered")
-    public void TC04() {
+    @Test(dataProvider = "getDataForTest", description = "User can't login with an account hasn't been registered")
+    public void TC04(Hashtable<String, String> data) {
         try {
             loginPage = new LoginPage();
 
