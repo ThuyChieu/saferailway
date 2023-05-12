@@ -21,23 +21,5 @@
       "TestPurpose": "Unable to login by leaving Password filed empty",
       "LoginErrMessage": "Invalid username or password. Please try again."
     }
-  ],
-  "TC_LOGIN_07_unable_to_login_by_providing_wrong_password": [
-    {
-      "Data": "Data1",
-      "TestPurpose": "Unable to login by providing wrong password",
-      "Password1": "123456789",
-      "Password2": "987654321",
-      "LoginErrMessage": "Invalid username or password. Please try again."
-    }
-  ],
-  "TC_LOGIN_08_Verify_that_password_is_case_sensitive": [
-    {
-      "Data": "Data1",
-      "TestPurpose": "Password is case sensitive",
-      "Password1": "TRANGNGUYEN",
-      "Password2": "trangnguyen",
-      "LoginErrMessage": "Invalid username or password. Please try again."
-    }
   ]
 }

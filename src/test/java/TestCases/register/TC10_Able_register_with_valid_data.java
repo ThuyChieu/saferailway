@@ -17,9 +17,6 @@ public class TC10_Able_register_with_valid_data extends BaseTest {
     @Test(dataProvider = "getDataForTest", description = "User can create new account")
     public void TC010(Hashtable<String, String> data) {
         try {
-            // C thêm data vào file data.json rồi dùng data đó để chạy test case
-            // Data được lưu vào biến data như TC11
-
             registerPage = new RegisterPage();
 
             logStep = TestReporter.logStepInfo(logMethod, "Step #1: Navigate to Railway");
