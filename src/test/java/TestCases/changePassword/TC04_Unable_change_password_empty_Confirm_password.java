@@ -13,12 +13,12 @@ import java.util.Hashtable;
 
 import static Common.GlobalVariables.RAILWAY_URL;
 
-public class TC19_Unable_change_password_when_New_pass_and_Confirm_pass_not_match extends BaseTest {
+public class TC04_Unable_change_password_empty_Confirm_password extends BaseTest {
     private ChangePasswordPage changePasswordPage;
     private LoginPage loginPage;
 
     @Test(dataProvider = "getDataForTest", description = "User can change password")
-    public void TC05_CP(Hashtable<String, String> data) {
+    public void TC04_CP(Hashtable<String, String> data) {
         try {
             loginPage = new LoginPage();
             changePasswordPage = new ChangePasswordPage();
@@ -50,5 +50,4 @@ public class TC19_Unable_change_password_when_New_pass_and_Confirm_pass_not_matc
             TestReporter.logException(logStep, "Verify login method page - ERROR", e);
         }
     }
-
 }

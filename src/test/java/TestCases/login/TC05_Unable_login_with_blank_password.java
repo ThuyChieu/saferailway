@@ -16,7 +16,7 @@ public class TC05_Unable_login_with_blank_password extends BaseTest {
     private LoginPage loginPage;
 
     @Test(dataProvider = "getDataForTest", description = "User can't login with blank 'Password' textbox")
-    public void TC05(Hashtable<String, String> data) {
+    public void TC05_LOGIN(Hashtable<String, String> data) {
         try {
             loginPage = new LoginPage();
 

@@ -11,6 +11,9 @@ public class MyTicketPage extends BasePage {
 
     @FindBy(id = "footer")
     private WebElement getFooter;
+    @FindBy(xpath = "//div//input[@type='submit']")
+    private WebElement button_ApplyFilter;
+
 
     private WebElement getBtnByRow(String rowNumber) {
         By btnCancel = By.xpath("//td[.='" + rowNumber + "']/..//input[@type='button' and @value='Cancel' or @value='Delete']");
@@ -27,7 +30,7 @@ public class MyTicketPage extends BasePage {
         }
     }
 
-    public MyTicketPage(WebDriver webdriver) {
+    public MyTicketPage() {
         PageFactory.initElements(Utility.getDriver(), this);
     }
 
@@ -47,5 +50,9 @@ public class MyTicketPage extends BasePage {
 
     public String getAtributeCanCelBtn(String rowNumber) {
         return getBtnByRow(rowNumber).getAttribute("onclick");
+    }
+
+    public boolean isFilterDisplayed(){
+        return button_ApplyFilter.isDisplayed();
     }
 }

@@ -1,23 +1,20 @@
 package TestCases.login;
 
+import Common.GlobalVariables;
 import PageObjects.Railway.LoginPage;
 import TestCases.BaseTest;
-import Utilities.DataFaker;
 import Utilities.TestReporter;
 import Utilities.WebDriverUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Hashtable;
-
 import static Common.GlobalVariables.RAILWAY_URL;
 
-
-public class TC04_Unable_login_with_unregister_account extends BaseTest {
+public class TC01_Able_login_with_valid_account extends BaseTest {
     private LoginPage loginPage;
 
-    @Test(dataProvider = "getDataForTest", description = "User can't login with an account hasn't been registered")
-    public void TC04_LOGIN(Hashtable<String, String> data) {
+    @Test(description = "User can log into Railway with valid username and password")
+    public void TC01_LOGIN() {
         try {
             loginPage = new LoginPage();
 
@@ -27,12 +24,12 @@ public class TC04_Unable_login_with_unregister_account extends BaseTest {
             logStep = TestReporter.logStepInfo(logMethod, "Step #2: Navigate to Login Page");
             loginPage.navigateLoginPage();
 
-            logStep = TestReporter.logStepInfo(logMethod, "Step #3: Login with unregister account");
-            loginPage.login(DataFaker.generateRandomEmail(), DataFaker.generateRandomString(10));
+            logStep = TestReporter.logStepInfo(logMethod, "Step #3: Login with valid account");
+            loginPage.login(GlobalVariables.email, GlobalVariables.password);
 
-            String errorMsg = loginPage.errorMsg();
-            logStep = TestReporter.logStepInfo(logMethod, "Step #4: Message 'Invalid username or password. Please try again.' is displayed.");
-            Assert.assertEquals(errorMsg, "Invalid username or password. Please try again.");
+            logStep = TestReporter.logStepInfo(logMethod, "Step #4: Verify that login successfully");
+            String text = loginPage.getLblWelcome();
+            Assert.assertEquals(text, "Welcome to Safe Railway", "Login unsuccessfully");
         } catch (Exception e) {
             log4j.error("login method - ERROR: ", e);
             TestReporter.logException(logStep, "Verify login method page - ERROR", e);

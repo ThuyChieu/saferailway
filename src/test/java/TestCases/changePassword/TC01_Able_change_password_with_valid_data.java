@@ -6,19 +6,18 @@ import PageObjects.Railway.LoginPage;
 import TestCases.BaseTest;
 import Utilities.TestReporter;
 import Utilities.WebDriverUtils;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Hashtable;
 
 import static Common.GlobalVariables.RAILWAY_URL;
 
-public class TC19_Unable_change_password_when_New_pass_and_Confirm_pass_not_match extends BaseTest {
+public class TC01_Able_change_password_with_valid_data extends BaseTest {
     private ChangePasswordPage changePasswordPage;
     private LoginPage loginPage;
 
     @Test(dataProvider = "getDataForTest", description = "User can change password")
-    public void TC05_CP(Hashtable<String, String> data) {
+    public void TC01_CP(Hashtable<String, String> data) {
         try {
             loginPage = new LoginPage();
             changePasswordPage = new ChangePasswordPage();
@@ -36,19 +35,12 @@ public class TC19_Unable_change_password_when_New_pass_and_Confirm_pass_not_matc
             changePasswordPage.navigateChangePasswordPage();
 
             logStep = TestReporter.logStepInfo(logMethod, "Step #4: Input valid data to change password");
-            changePasswordPage.inputInforForChangePass(GlobalVariables.password, data.get("NewPassword"), data.get("ConfirmPassword"));
+            changePasswordPage.inputInfor(GlobalVariables.password,data.get("NewPassword"), data.get("ConfirmPassword"));
             changePasswordPage.clickBtnChangePass();
-
-            String errorMsg = changePasswordPage.errorMsg();
-            String confirmPassMsg = changePasswordPage.confirmPassErrorMsg();
-            logStep = TestReporter.logStepInfo(logMethod, "Step #4: Message fail to change password is displayed.");
-            Assert.assertEquals(errorMsg, data.get("ErrorMessage"));
-            Assert.assertEquals(confirmPassMsg, data.get("ConfirmPasswordErrorMessage"));
         }
         catch (Exception e){
             log4j.error("login method - ERROR: ", e);
             TestReporter.logException(logStep, "Verify login method page - ERROR", e);
         }
     }
-
 }
