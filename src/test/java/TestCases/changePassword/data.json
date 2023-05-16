@@ -1,5 +1,5 @@
 {
-  "TC15_Able_change_password_with_valid_data": [
+  "TC01_Able_change_password_with_valid_data": [
     {
       "Data": "Data1",
       "TestPurpose": "User is able to change password by providing valid information",
@@ -8,7 +8,7 @@
       "SuccessMessage": "Your password has been updated!"
     }
   ],
-  "TC16_Unable_change_password_with_empty_Current_password": [
+  "TC02_Unable_change_password_with_empty_Current_password": [
     {
       "Data": "Data1",
       "TestPurpose": "User is unable to Change Password by leaving current password field empty",
@@ -19,7 +19,7 @@
       "CurrentPassErrorMessage": "Invalid current password."
     }
   ],
-  "TC17_Unable_change_password_with_empty_New_password": [
+  "TC03_Unable_change_password_with_empty_New_password": [
     {
       "Data": "Data1",
       "TestPurpose": "User is unable to Change Password by leaving new password field empty",
@@ -28,7 +28,7 @@
       "NewPasswordErrorMessage": "Invalid new password."
     }
   ],
-  "TC18_Unable_change_password_empty_Confirm_password": [
+  "TC04_Unable_change_password_empty_Confirm_password": [
     {
       "Data": "Data1",
       "TestPurpose": "User is unable to Change Password by leaving new password field empty",

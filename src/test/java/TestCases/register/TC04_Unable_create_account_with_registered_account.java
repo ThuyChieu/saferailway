@@ -30,7 +30,7 @@ public class TC04_Unable_create_account_with_registered_account extends BaseTest
             registerPage.register(GlobalVariables.email, GlobalVariables.password, GlobalVariables.password, GlobalVariables.autoGeneratePID);
 
             String errorMsg = registerPage.errorMsg();
-            logStep = TestReporter.logStepInfo(logMethod, "Step #3: Message 'There're errors in the form. Please correct the errors and try again.' is displayed above the form.");
+            logStep = TestReporter.logStepInfo(logMethod, "Step #4: Message 'There're errors in the form. Please correct the errors and try again.' is displayed above the form.");
             Assert.assertEquals(errorMsg, data.get("RegisterErrMessage"));
 
         } catch (Exception e) {
@@ -38,6 +38,5 @@ public class TC04_Unable_create_account_with_registered_account extends BaseTest
             TestReporter.logException(logStep, "Verify register method page - ERROR", e);
         }
     }
-
 }
 

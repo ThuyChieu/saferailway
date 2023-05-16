@@ -14,8 +14,8 @@ import static Common.GlobalVariables.RAILWAY_URL;
 public class TC01_Able_register_with_valid_data extends BaseTest {
     private RegisterPage registerPage;
 
-    @Test(dataProvider = "getDataForTest", description = "User can create new account")
-    public void TC01_REGISTER(Hashtable<String, String> data) {
+    @Test(description = "User can create new account")
+    public void TC01_REGISTER() {
         try {
             registerPage = new RegisterPage();
 

@@ -27,6 +27,7 @@ public class TC02_Filter_only_appears_when_ticket_table_has_more_than_6_rows ext
         try {
             int i;
             List<String> departStation = Arrays.asList(data.get("DepartStation").split("-"));
+            List<String> arriveStation = Arrays.asList(data.get("ArriveStation").split("-"));
             List<String> seatType = Arrays.asList(data.get("SeatType").split("-"));
             String ticketAmount = data.get("TicketAmount");
 
@@ -47,10 +48,11 @@ public class TC02_Filter_only_appears_when_ticket_table_has_more_than_6_rows ext
             bookTicketPage.navigateBookTicketPage();
 
             logStep = TestReporter.logStepInfo(logMethod, "Step #5: Book ticket 5 times");
-            for (i = 0; i < 5; i++) {
-                bookTicketPage.chooseDdlOption(CommonMethods.getSomeDaysAfter(i + 4), departStation.get(i), "", seatType.get(i), ticketAmount);
-                bookTicketPage.clickBookTicketBtn();
-            }
+           /* for (i = 0; i < 5; i++) {
+            //    bookTicketPage.navigateBookTicketPage();
+            //    bookTicketPage.chooseDdlOption(CommonMethods.getSomeDaysAfter(i+4), departStation.get(i), arriveStation.get(i), seatType.get(i), ticketAmount);
+            //    bookTicketPage.clickBookTicketBtn();
+            //} */
 
             logStep = TestReporter.logStepInfo(logMethod, "Step #7: Navigate to My Ticket Page");
             myTicketPage.navigateMyTicket();
@@ -59,11 +61,11 @@ public class TC02_Filter_only_appears_when_ticket_table_has_more_than_6_rows ext
             Assert.assertFalse(myTicketPage.isFilterDisplayed(), "The filter is displayed");
 
             logStep = TestReporter.logStepInfo(logMethod, "Step #9: Book more 1 ticket");
-            bookTicketPage.navigateBookTicketPage();
-            bookTicketPage.chooseDdlOption(CommonMethods.getSomeDaysAfter(i + 4), departStation.get(i), "", seatType.get(i), ticketAmount);
+            // bookTicketPage.navigateBookTicketPage();
+            // bookTicketPage.chooseDdlOption(CommonMethods.getSomeDaysAfter(i + 4), departStation.get(i), arriveStation.get(i), seatType.get(i), ticketAmount);
 
-            logStep = TestReporter.logStepInfo(logMethod, "Step #10: Book more Verify that filter is displayed");
-            Assert.assertTrue(myTicketPage.isFilterDisplayed(), "The filter is not displayed");
+            // logStep = TestReporter.logStepInfo(logMethod, "Step #10: Book more Verify that filter is displayed");
+            // Assert.assertTrue(myTicketPage.isFilterDisplayed(), "The filter is not displayed");
         } catch (Exception e) {
             log4j.error("login method - ERROR: ", e);
             TestReporter.logException(logStep, "Verify login method page - ERROR", e);

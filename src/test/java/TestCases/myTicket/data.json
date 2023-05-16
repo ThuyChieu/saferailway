@@ -14,7 +14,8 @@
       "Data": "Data1",
       "DepartStation": "Sài Gòn-Nha Trang-Đà Nẵng-Huế-Quảng Ngãi-Phan Thiết",
       "ArriveStation": "Phan Thiết-Sài Gòn-Sài Gòn-Sài Gòn-Sài Gòn-Sài Gòn",
-      "SeatType": "Hard seat-Soft seat-Soft seat with air conditioner-Hard bed-Soft bed-Soft bed with air conditioner"
+      "SeatType": "Hard seat-Soft seat-Soft seat with air conditioner-Hard bed-Soft bed-Soft bed with air conditioner",
+      "TicketAmount": "1"
     }
   ]
 }

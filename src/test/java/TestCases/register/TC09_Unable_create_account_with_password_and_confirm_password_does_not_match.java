@@ -12,11 +12,11 @@ import java.util.Hashtable;
 
 import static Common.GlobalVariables.RAILWAY_URL;
 
-public class TC03_Unable_create_account_with_empty_Email extends BaseTest {
+public class TC09_Unable_create_account_with_password_and_confirm_password_does_not_match extends BaseTest {
     private RegisterPage registerPage;
 
-    @Test(dataProvider = "getDataForTest", description = "User can't create account while email field is empty")
-    public void TC03_REGISTER(Hashtable<String, String> data) {
+    @Test(dataProvider = "getDataForTest", description = "User can't create account while password field is empty")
+    public void TC08_REGISTER(Hashtable<String, String> data) {
         try {
             registerPage = new RegisterPage();
 
@@ -26,19 +26,20 @@ public class TC03_Unable_create_account_with_empty_Email extends BaseTest {
             logStep = TestReporter.logStepInfo(logMethod, "Step #2: Navigate to Register Page");
             registerPage.navigateRegisterPage();
 
-            logStep = TestReporter.logStepInfo(logMethod, "Step #3: Leaving email field empty");
-            registerPage.register("", GlobalVariables.password, GlobalVariables.password, GlobalVariables.autoGeneratePID);
+            logStep = TestReporter.logStepInfo(logMethod, "Step #3: Fill password and corfirm password does not match");
+            registerPage.register(GlobalVariables.email, GlobalVariables.autoGeneratePassword, GlobalVariables.autoGeneratePassword, GlobalVariables.autoGeneratePID);
 
             String errorMsg = registerPage.errorMsg();
-            String emailErrorMsg = registerPage.getEmailErrorMessage();
+            String passErrorMsg = registerPage.passErrorMsg();
             logStep = TestReporter.logStepInfo(logMethod, "Step #4: Message 'There're errors in the form. Please correct the errors and try again.' is displayed above the form.");
-            Assert.assertEquals(errorMsg, data.get("ErrorMessage"));
+            Assert.assertEquals(errorMsg, data.get("RegisterErrMessage"));
 
-            logStep = TestReporter.logStepInfo(logMethod, "Step #5: Error email message is displayed");
-            Assert.assertEquals(emailErrorMsg, data.get("EmailErrMessage"));
+            logStep = TestReporter.logStepInfo(logMethod, "Step #5: Error password message is displayed");
+            Assert.assertEquals(passErrorMsg, data.get("ConfirmPasswordErrMessage"));
         } catch (Exception e) {
             log4j.error("register method - ERROR: ", e);
             TestReporter.logException(logStep, "Verify register method page - ERROR", e);
         }
     }
+
 }

@@ -32,10 +32,10 @@ public class TC02_Unable_create_account_with_empty_PID extends BaseTest {
 
             String errorMsg = registerPage.errorMsg();
             String PIDErrorMsg = registerPage.PIDErrorMsg();
-            logStep = TestReporter.logStepInfo(logMethod, "Step #3: Message 'There're errors in the form. Please correct the errors and try again.' is displayed above the form.");
+            logStep = TestReporter.logStepInfo(logMethod, "Step #4: Message 'There're errors in the form. Please correct the errors and try again.' is displayed above the form.");
             Assert.assertEquals(errorMsg, data.get("ErrorMessage"));
 
-            logStep = TestReporter.logStepInfo(logMethod, "Step #4: Next to PID field, error message 'Invalid ID length' is displayed");
+            logStep = TestReporter.logStepInfo(logMethod, "Step #5: Next to PID field, error message 'Invalid ID length' is displayed");
             Assert.assertEquals(PIDErrorMsg, data.get("PIDErrMessage"));
         } catch (Exception e) {
             log4j.error("register method - ERROR: ", e);

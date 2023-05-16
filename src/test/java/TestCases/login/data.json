@@ -21,5 +21,15 @@
       "TestPurpose": "Unable to login by leaving Password filed empty",
       "LoginErrMessage": "Invalid username or password. Please try again."
     }
+  ],
+  "TC07_Password_is_case_sensitive": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Password is case sensitive",
+      "Email": "chieuthuymai@gmail.com",
+      "PasswordUppercase": "CHIEUMAI",
+      "PasswordLowercase": "chieumai",
+      "LoginErrMessage": "Invalid username or password. Please try again."
+    }
   ]
 }

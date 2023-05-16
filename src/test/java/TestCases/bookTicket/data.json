@@ -6,7 +6,7 @@
       "DepartStation": "Sài Gòn",
       "ArriveStation": "Phan Thiết",
       "SeatType": "Hard seat",
-      "TicketAmount": "4",
+      "TicketAmount": "1",
       "SuccessMessage": "Ticket Booked Successfully!"
     }
   ]
