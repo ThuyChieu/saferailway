@@ -79,7 +79,31 @@
       "Data": "Data1",
       "TestPurpose": "Unable to register new account with password and confirm password does not match",
       "RegisterErrMessage": "There're errors in the form. Please correct the errors and try again.",
+      "ConfirmPassword": "123456789",
       "ConfirmPasswordErrMessage": "The two passwords do not match"
+    }
+  ],
+  "TC10_Unable_create_account_with_PID_less_than_8_or_more_than_20": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Unable to register new account by using PID has length less than 8 or more than 20",
+      "PID": "ch",
+      "RegisterErrMessage": "There're errors in the form. Please correct the errors and try again.",
+      "PIDErrMessage": "Invalid ID length"
+    },
+    {
+      "Data": "Data2",
+      "TestPurpose": "Unable to register new account by using PID has length less than 8 or more than 20",
+      "PID": "chieumai123456789chieumai123456789chieumai123456789",
+      "RegisterErrMessage": "There're errors in the form. Please correct the errors and try again.",
+      "PIDErrMessage": "Invalid ID length"
+    }
+  ],
+  "TC11_Unable_register_with_email_field_includes_more_than_2_emails": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Unable to register with email fields include more than 2 emails",
+      "RegisterErrMessage": "There're errors in the form. Please correct the errors and try again."
     }
   ]
 }

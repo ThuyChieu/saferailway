@@ -41,5 +41,4 @@ public class TC07_Unable_create_account_with_email_length_less_than_6_more_than_
             TestReporter.logException(logStep, "Verify register method page - ERROR", e);
         }
     }
-
 }

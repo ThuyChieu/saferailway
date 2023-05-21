@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class BookTicketPage extends BasePage {
+    @FindBy(xpath = "//h1[contains(text(),'Book ticket')]")
+    private WebElement getBookTicketTitle;
     @FindBy(xpath = "//select[@name='Date']")
     private WebElement getDdlDepartDate;
     @FindBy(xpath = "//select[@name='DepartStation']")
@@ -37,6 +39,10 @@ public class BookTicketPage extends BasePage {
 
     public void navigateBookTicketPage() {
         navigationBar("Book ticket").click();
+    }
+
+    public boolean isBookTicketPageTitleDisplayed() {
+        return getBookTicketTitle.isDisplayed();
     }
 
     public void chooseDdlOption(WebElement element, String value) {

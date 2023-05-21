@@ -1,12 +1,15 @@
 package PageObjects.Railway;
 
 import Utilities.Utility;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
+    @FindBy(xpath = "//h1[contains(text(),'Login Page')]")
+    private WebElement getLoginPage;
+    @FindBy(xpath = "//legend[contains(text(),'Password Reset Instructions Form')]")
+    private WebElement getForgotPasswordPage;
     @FindBy(id = "username")
     private WebElement getTxtEmail;
     @FindBy(id = "password")
@@ -64,14 +67,27 @@ public class LoginPage extends BasePage {
         return text;
     }
 
+    public boolean isLoginPageTitleDisplayed() {
+        return getLoginPage.isDisplayed();
+    }
+
+    public boolean isForgotPasswordPageTitleDisplayed() {
+        return getForgotPasswordPage.isDisplayed();
+    }
+    public boolean isRegistrationPageTitleDisplayed() {
+        return getForgotPasswordPage.isDisplayed();
+    }
+
     public String errorMsg() {
         String errorMsg = getLblError.getText();
         return errorMsg;
     }
+
     public String emailErrorMsg() {
         String emailErrorMessage = emailErrorMsg.getText();
         return emailErrorMessage;
     }
+
     public String passwordErrorMsg() {
         String passErrorMsg = passwordErrorMsg.getText();
         return passErrorMsg;

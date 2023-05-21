@@ -79,8 +79,6 @@ public class TestReporter {
             String screenShotLink = "<a href=\"" + screenShotName + "\"" + screenShotName + "</a>";
             if (logTest.getStatus() == Status.FAIL) {
                 logTest.fail(detail + screenShotLink).addScreenCaptureFromPath(screenShotName);
-//            } else if (logTest.getStatus() == Status.FAIL) {
-//                logTest.fail(detail + screenShotLink).addScreenCaptureFromPath(screenShotName);
             } else logTest.pass(detail + screenShotLink).addScreenCaptureFromPath(screenShotName);
 
         } catch (Exception e) {

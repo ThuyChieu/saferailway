@@ -18,6 +18,8 @@ public class RegisterPage extends BasePage {
     private WebElement getTxtPID;
     @FindBy(xpath = "//input[@value='Register']")
     private WebElement getBtnRegister;
+    @FindBy(xpath = "//h1[contains(text(),'Create account')]")
+    private WebElement getRegisterPageTitle;
     @FindBy(xpath = "//p[@class='message error']")
     private WebElement getLblError;
     @FindBy(xpath = "//label[@class='validation-error']")
@@ -26,6 +28,9 @@ public class RegisterPage extends BasePage {
     private WebElement getLblPassError;
     @FindBy(xpath = "//label[@class='validation-error' and @for='pid']")
     private WebElement getLblPIDError;
+    @FindBy(xpath = "//label[@class='validation-error' and @for='confirmPassword']")
+    private WebElement getConfirmPasswordError;
+
 
     public RegisterPage() {
         PageFactory.initElements(Utility.getDriver(), this);
@@ -53,6 +58,9 @@ public class RegisterPage extends BasePage {
         getTxtPID.sendKeys(PID);
         getBtnRegister.click();
     }
+    public boolean isRegisterPageTitleDisplayed() {
+        return getRegisterPageTitle.isDisplayed();
+    }
 
     public void clickBtnRegister() {
         getBtnRegister.click();
@@ -61,6 +69,10 @@ public class RegisterPage extends BasePage {
     public String passErrorMsg() {
         String passErrorMsg = getLblPassError.getText();
         return passErrorMsg;
+    }
+    public String confirmPassErrorMsg() {
+        String confirmPassErrorMsg = getConfirmPasswordError.getText();
+        return confirmPassErrorMsg;
     }
 
     public String errorMsg() {
