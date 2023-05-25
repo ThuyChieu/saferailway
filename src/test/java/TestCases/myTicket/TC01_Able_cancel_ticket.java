@@ -54,7 +54,7 @@ public class TC01_Able_cancel_ticket extends BaseTest {
             logStep = TestReporter.logStepInfo(logMethod, "Step #7: Navigate to My Ticket Page");
             myTicketPage.navigateMyTicket();
 
-            String cancelID = myTicketPage.getAtributeCanCelBtn("2");
+            String cancelID = myTicketPage.getAttributeCanCelBtn("2");
             myTicketPage.clickCancelBtn("2");
             myTicketPage.clickOKAlert();
             Boolean result = myTicketPage.getBtnByID(cancelID);

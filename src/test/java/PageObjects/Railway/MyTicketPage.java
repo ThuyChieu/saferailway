@@ -1,8 +1,8 @@
 package PageObjects.Railway;
 
 import Utilities.Utility;
+import Utilities.WebDriverUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -48,11 +48,16 @@ public class MyTicketPage extends BasePage {
         scrollToElement(getFooter);
     }
 
-    public String getAtributeCanCelBtn(String rowNumber) {
+    public String getAttributeCanCelBtn(String rowNumber) {
         return getBtnByRow(rowNumber).getAttribute("onclick");
     }
 
-    public boolean isFilterDisplayed(){
-        return button_ApplyFilter.isDisplayed();
+    public boolean isFilterDisplayed() throws Exception{
+        try {
+            return button_ApplyFilter.isDisplayed();
+        }catch (NullPointerException e)
+        {
+            return false;
+        }
     }
 }

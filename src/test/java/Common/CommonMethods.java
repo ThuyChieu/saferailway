@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class CommonMethods {
     public static String getSomeDaysAfter(int i){
-        DateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
 
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DATE, i);

@@ -28,6 +28,4 @@ public class GlobalVariables {
     //URL path
     public static final String RAILWAY_URL = "http://www.raillog.somee.com/Page/HomePage.cshtml";
     public static final String RAILWAY_HOMEPAGE_URL = "http://www.raillog.somee.com/";
-
-
 }

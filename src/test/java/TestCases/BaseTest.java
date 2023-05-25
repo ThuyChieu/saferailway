@@ -1,8 +1,11 @@
 package TestCases;
 
+import Common.GlobalVariables;
+import PageObjects.Railway.RegisterPage;
 import Utilities.PropertiesFile;
 import Utilities.TestReporter;
 import Utilities.Utility;
+import Utilities.WebDriverUtils;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -28,6 +31,7 @@ public class BaseTest extends Utility {
     public String testCaseName;
     public String testNameWithStatus;
     public static ArrayList<String> testCaseList = new ArrayList<String>();
+    private RegisterPage registerPage;
 
     @BeforeSuite
     public synchronized void beforeSuite(ITestContext context){
