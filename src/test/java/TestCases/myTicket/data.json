@@ -1,0 +1,21 @@
+{
+  "TC01_Able_cancel_ticket": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Verify that user can cancel ticket successfully",
+      "DepartStation": "Sài Gòn",
+      "ArriveStation": "Phan Thiết",
+      "SeatType": "Hard seat",
+      "TicketAmount": "4"
+    }
+  ],
+  "TC02_Filter_only_appears_when_ticket_table_has_more_than_6_rows": [
+    {
+      "Data": "Data1",
+      "DepartStation": "Sài Gòn-Nha Trang-Đà Nẵng-Huế-Quảng Ngãi-Phan Thiết",
+      "ArriveStation": "Phan Thiết-Sài Gòn-Sài Gòn-Sài Gòn-Sài Gòn-Sài Gòn",
+      "SeatType": "Hard seat-Soft seat-Soft seat with air conditioner-Hard bed-Soft bed-Soft bed with air conditioner",
+      "TicketAmount": "1"
+    }
+  ]
+}

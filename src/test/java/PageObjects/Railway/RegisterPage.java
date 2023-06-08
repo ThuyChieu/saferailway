@@ -1,6 +1,7 @@
 package PageObjects.Railway;
 
-import Common.PropertiesFile;
+import Utilities.PropertiesFile;
+import Utilities.Utility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,16 +18,22 @@ public class RegisterPage extends BasePage {
     private WebElement getTxtPID;
     @FindBy(xpath = "//input[@value='Register']")
     private WebElement getBtnRegister;
+    @FindBy(xpath = "//h1[contains(text(),'Create account')]")
+    private WebElement getRegisterPageTitle;
     @FindBy(xpath = "//p[@class='message error']")
     private WebElement getLblError;
+    @FindBy(xpath = "//label[@class='validation-error']")
+    private WebElement txt_EmailErrorMessage;
     @FindBy(xpath = "//label[@class='validation-error' and @for='password']")
     private WebElement getLblPassError;
     @FindBy(xpath = "//label[@class='validation-error' and @for='pid']")
     private WebElement getLblPIDError;
+    @FindBy(xpath = "//label[@class='validation-error' and @for='confirmPassword']")
+    private WebElement getConfirmPasswordError;
 
-    public RegisterPage(WebDriver webdriver) {
-        this.driver = webdriver;
-        PageFactory.initElements(driver, this);
+
+    public RegisterPage() {
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateRegisterPage() {
@@ -51,6 +58,9 @@ public class RegisterPage extends BasePage {
         getTxtPID.sendKeys(PID);
         getBtnRegister.click();
     }
+    public boolean isRegisterPageTitleDisplayed() {
+        return getRegisterPageTitle.isDisplayed();
+    }
 
     public void clickBtnRegister() {
         getBtnRegister.click();
@@ -59,6 +69,10 @@ public class RegisterPage extends BasePage {
     public String passErrorMsg() {
         String passErrorMsg = getLblPassError.getText();
         return passErrorMsg;
+    }
+    public String confirmPassErrorMsg() {
+        String confirmPassErrorMsg = getConfirmPasswordError.getText();
+        return confirmPassErrorMsg;
     }
 
     public String errorMsg() {
@@ -69,5 +83,9 @@ public class RegisterPage extends BasePage {
     public String PIDErrorMsg() {
         String PIDErrorMsg = getLblPIDError.getText();
         return PIDErrorMsg;
+    }
+
+    public String getEmailErrorMessage () {
+        return txt_EmailErrorMessage.getText();
     }
 }

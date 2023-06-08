@@ -1,11 +1,15 @@
 package PageObjects.Railway;
 
-import org.openqa.selenium.WebDriver;
+import Utilities.Utility;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
+    @FindBy(xpath = "//h1[contains(text(),'Login Page')]")
+    private WebElement getLoginPage;
+    @FindBy(xpath = "//legend[contains(text(),'Password Reset Instructions Form')]")
+    private WebElement getForgotPasswordPage;
     @FindBy(id = "username")
     private WebElement getTxtEmail;
     @FindBy(id = "password")
@@ -16,12 +20,16 @@ public class LoginPage extends BasePage {
     private WebElement getLblWelcome;
     @FindBy(xpath = "//p[@class='message error LoginForm']")
     private WebElement getLblError;
+    @FindBy(xpath = "//label[@class='validation-error']")
+    private WebElement emailErrorMsg;
+    @FindBy(xpath = "//label[@class='validation-error']")
+    private WebElement passwordErrorMsg;
+
     @FindBy(id = "footer")
     private WebElement getFooter;
 
-    public LoginPage(WebDriver webdriver) {
-        this.driver = webdriver;
-        PageFactory.initElements(driver, this);
+    public LoginPage() {
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateLoginPage() {
@@ -59,9 +67,30 @@ public class LoginPage extends BasePage {
         return text;
     }
 
+    public boolean isLoginPageTitleDisplayed() {
+        return getLoginPage.isDisplayed();
+    }
+
+    public boolean isForgotPasswordPageTitleDisplayed() {
+        return getForgotPasswordPage.isDisplayed();
+    }
+    public boolean isRegistrationPageTitleDisplayed() {
+        return getForgotPasswordPage.isDisplayed();
+    }
+
     public String errorMsg() {
         String errorMsg = getLblError.getText();
         return errorMsg;
+    }
+
+    public String emailErrorMsg() {
+        String emailErrorMessage = emailErrorMsg.getText();
+        return emailErrorMessage;
+    }
+
+    public String passwordErrorMsg() {
+        String passErrorMsg = passwordErrorMsg.getText();
+        return passErrorMsg;
     }
 
     public void loginMultipleTimesWithWrongPass(String email, String password) {

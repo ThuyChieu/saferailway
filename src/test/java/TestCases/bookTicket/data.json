@@ -1,0 +1,13 @@
+{
+  "TC01_Able_book_ticket_with_valid_data": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Verify that user can book ticket successfully",
+      "DepartStation": "Sài Gòn",
+      "ArriveStation": "Phan Thiết",
+      "SeatType": "Hard seat",
+      "TicketAmount": "1",
+      "SuccessMessage": "Ticket Booked Successfully!"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 package PageObjects.Railway;
 
+import Utilities.PropertiesFile;
+import Utilities.Utility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,10 +19,16 @@ public class ChangePasswordPage extends BasePage {
 
     @FindBy(xpath = "//p[@class='message error']")
     private WebElement getErrorLbl;
+    @FindBy(xpath = "//label[@for='currentPassword'][@class='validation-error']")
+    private WebElement currentPassErrorMessage;
+    @FindBy(xpath = "//label[@for='newPassword'][@class='validation-error']")
+    private WebElement newPassErrorMessage;
+    @FindBy(xpath = "//label[@for='confirmPassword'][@class='validation-error']")
+    private WebElement confirmPassErrorMessage;
 
-    public ChangePasswordPage(WebDriver webdriver) {
-        this.driver = webdriver;
-        PageFactory.initElements(driver, this);
+
+    public ChangePasswordPage() {
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateChangePasswordPage() {
@@ -28,6 +36,13 @@ public class ChangePasswordPage extends BasePage {
     }
 
     public void inputInfor(String currentPass, String newPass, String confirmPass) {
+        scrollToElement(getTxtCurrentPass);
+        getTxtCurrentPass.sendKeys(currentPass);
+        getTxtNewPass.sendKeys(newPass);
+        getTxtConfirmPass.sendKeys(confirmPass);
+        PropertiesFile.setPropValue("password", newPass);
+    }
+    public void inputInforForChangePass(String currentPass, String newPass, String confirmPass) {
         scrollToElement(getTxtCurrentPass);
         getTxtCurrentPass.sendKeys(currentPass);
         getTxtNewPass.sendKeys(newPass);
@@ -42,5 +57,17 @@ public class ChangePasswordPage extends BasePage {
     public String errorMsg() {
         String errorMsg = getErrorLbl.getText();
         return errorMsg;
+    }
+    public String currentPassErrorMsg() {
+        String currentPassError = currentPassErrorMessage.getText();
+        return currentPassError;
+    }
+    public String newPassErrorMsg() {
+        String newPassError = newPassErrorMessage.getText();
+        return newPassError;
+    }
+    public String confirmPassErrorMsg() {
+        String confirmPassError = confirmPassErrorMessage.getText();
+        return confirmPassError;
     }
 }

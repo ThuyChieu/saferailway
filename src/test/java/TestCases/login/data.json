@@ -1,0 +1,35 @@
+{
+  "TC03_Unable_login_with_blank_Username": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Unable to login by leaving Username empty",
+      "LoginErrMessage": "There was a problem with your login and/or errors exist in your form.",
+      "EmailErrMessage": "You must specify a username."
+    }
+  ],
+  "TC05_Unable_login_with_blank_password": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Unable to login by leaving Username empty",
+      "LoginErrMessage": "There was a problem with your login and/or errors exist in your form.",
+      "PassErrMessage": "You must specify a password."
+    }
+  ],
+  "TC_06_Unable_login_with_wrong_password": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Unable to login by leaving Password filed empty",
+      "LoginErrMessage": "Invalid username or password. Please try again."
+    }
+  ],
+  "TC07_Password_is_case_sensitive": [
+    {
+      "Data": "Data1",
+      "TestPurpose": "Password is case sensitive",
+      "Email": "chieuthuymai@gmail.com",
+      "PasswordUppercase": "CHIEUMAI",
+      "PasswordLowercase": "chieumai",
+      "LoginErrMessage": "Invalid username or password. Please try again."
+    }
+  ]
+}

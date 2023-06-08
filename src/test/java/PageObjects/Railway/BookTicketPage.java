@@ -1,22 +1,24 @@
 package PageObjects.Railway;
 
+import Utilities.Utility;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class BookTicketPage extends BasePage {
-    @FindBy(name = "Date")
+    @FindBy(xpath = "//h1[contains(text(),'Book ticket')]")
+    private WebElement getBookTicketTitle;
+    @FindBy(xpath = "//select[@name='Date']")
     private WebElement getDdlDepartDate;
-    @FindBy(name = "DepartStation")
+    @FindBy(xpath = "//select[@name='DepartStation']")
     private WebElement getDdlDepartStation;
-    @FindBy(name = "ArriveStation")
+    @FindBy(xpath = "//select[@name='ArriveStation']")
     private WebElement getDdlArriveStation;
-    @FindBy(name = "SeatType")
+    @FindBy(xpath = "//select[@name='SeatType']")
     private WebElement getDdlSeatType;
-    @FindBy(name = "TicketAmount")
+    @FindBy(xpath = "//select[@name='TicketAmount']")
     private WebElement getDdlTicketAmount;
     @FindBy(xpath = "//input[@value='Book ticket']")
     private WebElement getBtnBookTicket;
@@ -28,16 +30,19 @@ public class BookTicketPage extends BasePage {
 
     private WebElement getBookedTicketInfor(String value) {
         By valueInTable = By.xpath("//td[count(//table//th[.='" + value + "']/preceding-sibling::th)+1]");
-        return driver.findElement(valueInTable);
+        return Utility.getDriver().findElement(valueInTable);
     }
 
-    public BookTicketPage(WebDriver webDriver) {
-        this.driver = webDriver;
-        PageFactory.initElements(driver, this);
+    public BookTicketPage() {
+        PageFactory.initElements(Utility.getDriver(), this);
     }
 
     public void navigateBookTicketPage() {
         navigationBar("Book ticket").click();
+    }
+
+    public boolean isBookTicketPageTitleDisplayed() {
+        return getBookTicketTitle.isDisplayed();
     }
 
     public void chooseDdlOption(WebElement element, String value) {
@@ -62,7 +67,7 @@ public class BookTicketPage extends BasePage {
         verifyDdlValues(getDdlTicketAmount, ticketAmount);
     }
 
-    public void clickBtnBookTicket() {
+    public void clickBookTicketBtn() {
         getBtnBookTicket.click();
     }
 
