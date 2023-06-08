@@ -26,11 +26,8 @@ public class TC01_Able_login_with_valid_account extends BaseTest {
             logStep = TestReporter.logStepInfo(logMethod, "Step #2: Navigate to Login Page");
             loginPage.navigateLoginPage();
 
-            logStep = TestReporter.logStepInfo(logMethod, "Step #3: Navigate to Forgot Password");
-            loginPage.navigateForgotPassLink();
-
-            logStep = TestReporter.logStepInfo(logMethod, "Step #4: Verify that Register Page is displayed");
-            loginPage.navigateForgotPassLink();
+            logStep = TestReporter.logStepInfo(logMethod, "Step #3: Login with valid account");
+            loginPage.login(GlobalVariables.email, GlobalVariables.password);
         } catch (Exception e) {
             log4j.error("login method - ERROR: ", e);
             TestReporter.logException(logStep, "Verify login method page - ERROR", e);

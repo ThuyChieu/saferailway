@@ -12,7 +12,7 @@ public class MyTicketPage extends BasePage {
     @FindBy(id = "footer")
     private WebElement getFooter;
     @FindBy(xpath = "//div//input[@type='submit']")
-    private WebElement button_ApplyFilter;
+    private WebElement applyFilterBtn;
 
 
     private WebElement getBtnByRow(String rowNumber) {
@@ -52,6 +52,7 @@ public class MyTicketPage extends BasePage {
         return getBtnByRow(rowNumber).getAttribute("onclick");
     }
 
+<<<<<<< Updated upstream
     public boolean isFilterDisplayed() throws Exception{
         try {
             return button_ApplyFilter.isDisplayed();
@@ -59,5 +60,9 @@ public class MyTicketPage extends BasePage {
         {
             return false;
         }
+=======
+    public boolean isFilterDisplayed(){
+        return applyFilterBtn.isDisplayed();
+>>>>>>> Stashed changes
     }
 }

@@ -50,12 +50,22 @@ public class TC02_Filter_only_appears_when_ticket_table_has_more_than_6_rows ext
         myTicketPage = new MyTicketPage();
         bookTicketPage = new BookTicketPage();
 
+<<<<<<< Updated upstream
         logStep = TestReporter.logStepInfo(logMethod, "Step #1: Navigate to Railway");
         WebDriverUtils.navigateToPage(logStep, RAILWAY_URL);
+=======
+            logStep = TestReporter.logStepInfo(logMethod, "Step #5: Book ticket 5 times");
+            for (i = 0; i < 5; i++) {
+                bookTicketPage.navigateBookTicketPage();
+                bookTicketPage.chooseDdlOption(CommonMethods.getSomeDaysAfter(i + 4), departStation.get(i), arriveStation.get(i), seatType.get(i), ticketAmount);
+                bookTicketPage.clickBookTicketBtn();
+            }
+>>>>>>> Stashed changes
 
         logStep = TestReporter.logStepInfo(logMethod, "Step #2: Navigate to Login Page");
         loginPage.navigateLoginPage();
 
+<<<<<<< Updated upstream
         logStep = TestReporter.logStepInfo(logMethod, "Step #3: Login with valid account");
         loginPage.login(email, password);
 
@@ -68,6 +78,20 @@ public class TC02_Filter_only_appears_when_ticket_table_has_more_than_6_rows ext
             bookTicketPage.chooseDdlOption(CommonMethods.getSomeDaysAfter(i + 4), departStation.get(i), arriveStation.get(i), seatType.get(i), ticketAmount);
             WebDriverUtils.waitForPageLoaded();
             bookTicketPage.clickBookTicketBtn();
+=======
+//            logStep = TestReporter.logStepInfo(logMethod, "Step #8: Verify that filter is not displayed");
+//            Assert.assertFalse(myTicketPage.isFilterDisplayed(), "The filter is displayed");
+
+            logStep = TestReporter.logStepInfo(logMethod, "Step #9: Book more 1 ticket");
+            bookTicketPage.navigateBookTicketPage();
+            bookTicketPage.chooseDdlOption(CommonMethods.getSomeDaysAfter(i + 4), departStation.get(i), arriveStation.get(i), seatType.get(i), ticketAmount);
+
+            logStep = TestReporter.logStepInfo(logMethod, "Step #10: Verify that filter is displayed");
+            Assert.assertTrue(myTicketPage.isFilterDisplayed(), "The filter is not displayed");
+        } catch (Exception e) {
+            log4j.error("login method - ERROR: ", e);
+            TestReporter.logException(logStep, "Verify login method page - ERROR", e);
+>>>>>>> Stashed changes
         }
 
         logStep = TestReporter.logStepInfo(logMethod, "Step #7: Navigate to My Ticket Page");
@@ -83,5 +107,4 @@ public class TC02_Filter_only_appears_when_ticket_table_has_more_than_6_rows ext
         logStep = TestReporter.logStepInfo(logMethod, "Step #10: Book more Verify that filter is displayed");
         Assert.assertTrue(myTicketPage.isFilterDisplayed(), "The filter is not displayed");
     }
-
 }
